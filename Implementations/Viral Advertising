@@ -1,0 +1,30 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int viralAdvertising(int n) 
+{
+   n=n-1;
+   int like=2;
+   int dislike=3; int sum=0;
+   int recieved, new_like, new_dislike;
+   while (n>0)
+   {
+       recieved = like *3;
+       new_like = recieved/2;
+       new_dislike = recieved-new_like;  
+       like = new_like;
+       --n;
+       sum = like + sum;       
+   }
+    return sum+2;
+}
+
+int main() 
+{
+    int n;
+    cin >> n;
+    int result = viralAdvertising(n);
+    cout << result << endl;
+    return 0;
+}
