@@ -1,0 +1,81 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int solve(long long int n, long long int p)
+{
+long long int f=0; long long int b=0;
+long long int i;
+if (n % 2 == 0)
+    {   
+        if ( p % 2 == 0)
+        {
+            if (p==n )
+                goto label;
+            else 
+            {
+                for (i=1;i<p+1;i=i+2)
+                f++;
+                for (i=n;i>p;i=i-2)
+                b++;
+            }
+        }
+        else
+        {
+            if ( p==1)
+                goto label;
+            else
+            {
+                for (i=1; i<p; i=i+2)
+                    f++;
+                for (i=n; i>p; i=i-2)
+                    b++;
+            }
+        }
+    }
+else
+{
+    if ( p % 2 == 0)
+    {
+        if ((p+1)==n)
+        goto label;
+        
+        else
+        {
+            for (i=1;i<p+1;i=i+2)
+            f++;
+            for (i=n;i>p+1;i=i-2)
+            b++;
+        }
+    }
+    else
+    {
+       if (p==1 || p==n)
+           goto label;
+        else
+        {
+          for (i=1;i<p;i=i+2)
+          f++;
+          for (i=n; i>p; i=i-2)
+           b++;
+        }
+    }
+}
+if (f>b)
+return b;
+else
+return f;
+    label: return 0;
+
+}
+        
+int main() 
+{
+    long long int n;
+    cin >> n;
+     long long int p;
+    cin >> p;
+    int result = solve(n, p);
+    cout << result << endl;
+    return 0;
+}
