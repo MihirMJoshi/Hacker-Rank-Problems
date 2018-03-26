@@ -1,0 +1,101 @@
+#include <iostream>
+#include <vector>
+#include <climits>
+#include <algorithm>
+using namespace std;
+
+vector<vector<int> > mirror(vector<vector<int> > v) 
+{
+    for (int j = 0; j < 3; j++) 
+    {
+        swap(v[j][0], v[j][2]);
+    }
+    return v;
+}
+
+/*rotate  = transpose + vertical flip*/
+vector<vector<int> > rotate(vector<vector<int> > v) 
+{
+    vector<vector<int> >res(3,vector<int>(3));
+
+    for (int i = 0; i < 3; i++)
+    {/*transpose*/
+        for (int j = 0; j < 3; j++) 
+        {
+            res[i][j] = v[j][i];
+        }
+    }
+
+    for (int j = 0; j < 3; j++) 
+        {/*vertical flip*/
+            swap(res[0][j], res[2][j]);
+        }
+
+    return res;
+}
+
+
+int calculate(vector <vector <int> > v, vector <vector <int> > magic) 
+{
+    int cost = 0;
+
+    for (int i = 0; i < 3; i++) 
+    {
+        for (int j = 0; j < 3; j++)
+        {
+            cost += abs(v[i][j] - magic[i][j]);
+        }
+    }
+
+    return cost;
+}
+
+
+
+int main()
+{
+    vector<vector<int> >v(3, vector<int>(3));
+    for (int i = 0; i < 3;i++)
+    {
+        for (int j = 0; j < 3;j++) 
+        {
+            int tmp;
+            cin >> tmp;
+            v[i][j] = tmp;
+
+        }
+    }
+
+    vector<vector<int> >magic(3, vector<int>(3));
+    magic = {{ 8,1,6 },{ 3,5,7 },{ 4,9,2 }};
+
+    int min = INT_MAX;
+    int cost = 0;
+    int n = 4;
+
+    while (n-->0) 
+    {
+        cost = calculate(v,magic);
+        if (min>cost)
+        {
+            min = cost;
+        }
+        magic = rotate(magic);
+    }
+
+    magic = mirror(magic);
+    n = 4;
+    while (n-->0)
+    {
+        cost = calculate(v, magic);
+        if (min>cost) 
+        {
+            min = cost;
+        }
+        magic = rotate(magic);
+
+    }
+
+    cout << min << endl;
+    return 0;
+}
