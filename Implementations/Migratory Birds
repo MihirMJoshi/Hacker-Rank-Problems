@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int migratoryBirds(long long int n, vector <int> ar) 
+{
+    long long int freq = 0; long long int count =0; long long int current_count=1;
+    for (int i=0; i<n; i++)
+    { 
+    	for (int j=i+1; j<n;j++)
+		if (ar.at(i)==ar.at(j) && ar.at(i)!=freq)
+		 	current_count++;
+		if (count < current_count)
+		{
+			count=current_count;
+			current_count=1;
+			freq=ar.at(i);
+		}
+	}
+ 	//cout<<freq<<endl;
+    return freq;
+    // Complete this function
+}
+
+int main() 
+	{
+    long long int n;
+    cin >> n;
+    vector<int> ar(n);
+    for(int ar_i = 0; ar_i < n; ar_i++)
+    {
+       cin >> ar[ar_i];
+    }
+    int result = migratoryBirds(n, ar);
+    cout << result << endl;
+    return 0;
+}
