@@ -1,0 +1,34 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void CatMouse_Problem(vector <int> x, vector <int> y, vector <int> z, int q)
+{
+	for (int i=0; i<q; i++)
+	{
+		if (abs(x.at(i)-z.at(i)) > abs(y.at(i)-z.at(i)))
+			cout<<"Cat B"<<endl;
+			
+		else if (abs(x.at(i)-z.at(i)) < abs(y.at(i)-z.at(i)))
+			cout<<"Cat A"<<endl;
+			
+		else
+			cout<<"Mouse C"<<endl;
+	}
+}
+
+int main()
+{
+	int q;
+	cin>>q;
+	
+	vector <int> x(q);
+	vector <int> y(q);
+	vector <int> z(q);
+	
+	for (int i=0; i<q; i++)
+	{
+		cin >> x[i] >> y[i] >> z[i];
+	}
+	CatMouse_Problem (x,y,z,q);
+	return 0;
+}
