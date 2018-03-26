@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void plusMinus(vector <int> arr) 
+{
+    unsigned int i;
+    float positive=0,negative=0,z,p,n;
+    for ( i=0; i< arr.size(); i++)
+    {
+    if (arr.at(i) > 0)
+    positive++;
+    if (arr.at(i) < 0)
+    negative++;
+    }
+    p=positive/arr.size();
+    n=negative/arr.size();
+    z=1-(p+n);
+    cout <<p << endl << n << endl << z;
+}
+
+int main()
+{
+    int n;
+    cin >> n;
+    vector<int> arr(n);
+    for(int arr_i = 0; arr_i < n; arr_i++)
+    {
+       cin >> arr[arr_i];
+    }
+    plusMinus(arr);
+    return 0;
+}
