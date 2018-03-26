@@ -1,0 +1,31 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int birthdayCakeCandles(int n, vector <int> ar)
+{
+     int c=0,i=0,max=0;
+    for(i=0;i<ar.size();i++)
+    {
+       if(ar.at(i)>max)
+           max=ar.at(i);
+	}
+	for (i=0;i<ar.size();i++)
+		if(max==ar.at(i))
+		c++;
+    return c;  
+}
+
+int main() 
+{
+    int n;
+    cin >> n;
+    vector<int> ar(n);
+    for(int ar_i = 0; ar_i < n; ar_i++)
+    {
+       cin >> ar[ar_i];
+    }
+    int result = birthdayCakeCandles(n, ar);
+    cout << result << endl;
+    return 0;
+}
