@@ -1,0 +1,33 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int countingValleys(int n, string s) 
+{
+    int v=0;
+    int lvl=0;
+    int i;
+   // n=strlen(s);
+    for ( i=0; i<n; i++)
+    {
+        if (s.at(i)=='U')
+            lvl++;
+        if(s.at(i)=='D')
+            lvl--;
+        if(lvl==0 && s.at(i)=='U')
+            v++;
+    }
+    return v;
+    // Complete this function
+}
+
+int main() 
+{
+    int n;
+    cin >> n;
+    string s;
+    cin >> s;
+    int result = countingValleys(n, s);
+    cout << result << endl;
+    return 0;
+}
