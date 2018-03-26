@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void solve(int n, int k, vector <int> cost, int bill_charged)
+ 	{	
+    int sum = 0;
+ 	for (int l=0; l<cost.size(); l++)
+        {
+        if (l!=k)
+        sum = sum + cost.at(l);
+        }
+    int bill_actual = sum/2;
+    if (bill_actual == bill_charged)
+    cout<<"Bon Appetit";
+    else
+    cout<<abs(bill_charged-bill_actual);
+	}
+
+int main() 
+{	
+	int bill_charged;
+    int n,k;
+    cin >> n >> k;
+    //cout <<endl;
+    vector<int> cost(n);
+    for(int cost_i = 0; cost_i < n; cost_i++)
+    {
+       cin >> cost[cost_i];
+    }
+    cin >> bill_charged;
+    solve(n,k,cost,bill_charged);
+    cout << endl;
+    
+
+    return 0;
+}
