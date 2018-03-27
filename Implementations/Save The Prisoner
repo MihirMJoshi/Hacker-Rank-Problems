@@ -1,0 +1,35 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int saveThePrisoner(long long int n, long long int m, long long int s)
+{
+    s=s-1;
+    while (m!=0)
+    {
+        s++;
+            if (s==n)
+             s=0;
+        m--;
+    }
+    if (s==0)
+    return n;
+    else
+    return s;
+}
+
+int main() 
+{
+    long long int t;
+    cin >> t;
+    for(long long int a0 = 0; a0 < t; a0++)
+    {
+        long long int n;
+        long long int m;
+        long long int s;
+        cin >> n >> m >> s;
+        int result = saveThePrisoner(n, m, s);
+        cout << result << endl;
+    }
+    return 0;
+}
