@@ -1,0 +1,25 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int saveThePrisoner(long long int n, long long int m, long long int s)
+{
+    return ((( m - 1 + s - 1) % n) + 1);
+    // Complete this function
+}
+
+int main() 
+{
+    long long int t;
+    cin >> t;
+    for(long long int a0 = 0; a0 < t; a0++)
+    {
+        long long int n;
+        long long int m;
+        long long int s;
+        cin >> n >> m >> s;
+        int result = saveThePrisoner(n, m, s);
+        cout << result << endl;
+    }
+    return 0;
+}
