@@ -14,7 +14,7 @@ void angryProfessor(int k, vector <int> a)
         cout<<"NO \n";
     else
         cout<<"YES \n";
-    // Complete this function
+    // Complete this function ok
 }
 
 int main() {
