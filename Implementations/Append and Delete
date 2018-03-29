@@ -1,0 +1,40 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void appendAndDelete(string s, string t, int k) 
+{
+    int z = min (s.length(), t.length());
+    int commonlength = 0;
+    for (int i=0; i<z; i++)
+        if (s.at(i) == t.at(i))
+        commonlength++;    
+    
+    if ((s.length()+t.length()-2*commonlength) > k )
+        cout<<"No";
+    
+    else if (((s.length()+t.length()-2*commonlength) % 2) == (k % 2))
+    {
+        if ((commonlength == z) || (commonlength+1 < k))
+            cout<<"Yes";
+        else
+            cout<<"No";
+    }
+    
+    else if (s.length()+t.length() < k )
+        cout<<"Yes";
+    else 
+        cout<<"No";
+}
+
+int main() 
+{
+    string s;
+    cin >> s;
+    string t;
+    cin >> t;
+    int k;
+    cin >> k;
+    appendAndDelete(s, t, k);
+    return 0;
+}
