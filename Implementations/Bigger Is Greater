@@ -1,0 +1,24 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string biggerIsGreater(string w) 
+{
+    bool val = next_permutation(w.begin(), w.end());
+    if (val==false)
+        return "no answer";
+    else
+        return w;
+}
+
+int main() {
+    int T;
+    cin >> T;
+    for(int a0 = 0; a0 < T; a0++){
+        string w;
+        cin >> w;
+        string result = biggerIsGreater(w);
+        cout << result << endl;
+    }
+    return 0;
+}
