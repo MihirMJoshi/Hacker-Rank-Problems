@@ -1,0 +1,48 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int n,matrix[101][101], type[101], container[101];
+    int suma=0; int sumb=0;
+    int t; cin>>t;
+    while (t--)
+    {
+        cin>>n;
+        for (int i=0; i<n; i++)
+            for(int j=0; j<n; j++)
+                cin>>matrix[i][j];
+        for (int i=0; i<n; i++)
+        {
+            for(int j=0;j<n;j++)
+            {
+                suma += matrix[j][i];
+                sumb += matrix[i][j];
+            }
+        type[i] = suma;
+        container[i] = sumb;
+        suma = 0; sumb = 0;
+        }
+        int found = 0;
+        for (int i=0; i<n; i++)
+        {
+            int found = 0;
+            for (int j=0; j<n; j++)
+            {
+                if (type[i]==container[j])
+                {
+                    type[i]=0;
+                    container[j]=0;
+                    found=1;
+                    break;
+                }
+            }
+            if (!found)
+                break;
+        }
+        if (found)
+         cout<<"Possible";
+         else cout<<"Impossible";
+    }
+}
