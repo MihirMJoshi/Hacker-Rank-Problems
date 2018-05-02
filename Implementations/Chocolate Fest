@@ -1,0 +1,32 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int chocolateFeast(int n, int c, int m)
+{
+    int chocolates = n/c; int x = chocolates; int y=0;
+    if (chocolates<m)
+        return chocolates;
+    while (chocolates>=m)
+    {
+        chocolates -= m;
+        chocolates++;
+        y++;
+    }
+    return x+y;
+}
+
+int main() 
+{
+    int t;
+    cin >> t;
+    for(int a0 = 0; a0 < t; a0++){
+        int n;
+        int c;
+        int m;
+        cin >> n >> c >> m;
+        int result = chocolateFeast(n, c, m);
+        cout << result << endl;
+    }
+    return 0;
+}
