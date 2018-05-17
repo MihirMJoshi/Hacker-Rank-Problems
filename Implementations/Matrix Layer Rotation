@@ -1,0 +1,62 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+    int rows,columns,rotations;
+    cin>>rows>>columns>>rotations;
+    int array[rows][columns];
+    int result[rows][columns];
+    
+    for (int i=0; i<rows; i++)
+        for (int j=0; j<columns; j++)
+            cin>>array[i][j];
+    
+    rows--;                // since the for loops are starting from 0
+    columns--;
+    
+    for (int i=0; i<=rows; i++)
+    {
+        for (int j=0; j<=columns; j++)
+        {    
+            // inside shifting anticlockwise
+            
+            int x = i < rows - i ? i : rows - i;            // check for the minimum rows
+            int y = j < columns - j ? j : columns - j;      // check for the minimum columns
+            int min = (x < y) ? x : y;                      // take up the minimum values for row                                                                & column
+            
+            // outside shifting anticlockwise
+            
+            int maxRow = rows - min;                        // maximum row (outside shifting)
+            int maxColumn = columns - min;                  // minimum row (outside shifting)
+            
+            int parameter = (maxRow+maxColumn)*2-(4*min);   // parameter needed upto where the                                                                     rotations must be performed
+            
+            int row=i;
+            int column=j;
+            int factor = (rotations % parameter);
+            for (int a=0; a<factor; a++)
+            {
+                if (column == min && row < maxRow)
+                    row++;
+                else if (column < maxColumn && row == maxRow)
+                    column++;
+                else if (column == maxColumn && row > min)
+                    row--;
+                else if (row == min && column > min)
+                    column--;
+            }
+            result[row][column] = array[i][j];
+        }
+    }
+    for (int r=0; r<=rows; r++)
+    {
+        for (int c=0; c<=columns; c++)
+        {
+            cout<<result[r][c]<<" ";
+        }
+        cout<<endl;
+    }
+    return 0;
+}
