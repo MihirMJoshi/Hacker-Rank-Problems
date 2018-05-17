@@ -1,39 +1,36 @@
 #include<iostream>
 using namespace std;
-int diff(int mid, int l, int r, int up, int down)
-{                                                         // to calculate                                                                                   visible surface area of coord. i,j
-    if(l>=mid) l=mid;
-    if(r>=mid) r=mid;
-    if(up>=mid) up=mid;
-    if(down>=mid) down=mid;
-    int sum = 2 + 4*mid - l-r-up-down;
-    return sum;
+
+int calculate (int mid, int down, int up, int right, int left)
+{
+    if  (left>=mid)   left=mid;
+    if  (right>=mid)  right=mid;
+    if  (up>=mid)     up=mid;
+    if  (down>=mid)   down=mid;
+    int total = 2+4*mid-left-up-right-down;
+    return total;
 }
+
 int main()
 {
     int h,w;
-    cin>>h>>w;  
-    int grid[h+2][w+2];                                     // to make a boundary of zeroes on 2d                                                             array
-    for(int i=0; i<(h+2); i+=1)
-    { 
-        for(int j=0; j<(w+2); j+=1)
+    cin>>h>>w;
+    int matrix[h+2][w+2];
+    for (int i=0; i<(h+2); i++)   // keep 2 distance for padding up zeros (since its 2*2)
+        for (int j=0; j<(w+2); j++)
         {
-            if(i==0 || i==(h+1) || j==0 || j==(w+1)){
-                grid[i][j]=0;
-            }
-            else cin>>grid[i][j];
+            if (i == 0 || i == (h+1) || j == 0 || j == (w+1)) // all the first rows and columns                                                                    are kept for padding purposes
+                matrix[i][j]=0;
+            else
+                cin>>matrix[i][j];                            // taking all input values
         }
-    }
     
     int sum=0;
-    for(int i=0; i<(h+2); i+=1)
-    {                                                       // add all the visible surface area of                                                             each coordinates 
-        for(int j=0; j<(w+2); j+=1)
-        {
-            if(i!=0 && i!=(h+1) && j!=0 && j!=(w+1))
-              sum+=diff(grid[i][j],grid[i][j-1],grid[i][j+1],grid[i-1][j],grid[i+1][j]);  
-        }
-    }
+    for (int i=0; i<(h+2); i++)                          // calculating the visible                                      
+        for (int j=0; j<(w+2); j++)                                                                       {
+            if (i!=0 && j!=0 && i!=(h+1) && j!=(w+1))
+                sum += calculate (matrix[i][j], matrix[i+1][j], matrix[i-1][j], matrix[i][j+1], matrix[i][j-1]);                                        // sum is being calculated overall
+            }
     cout<<sum;
     return 0;
 }
