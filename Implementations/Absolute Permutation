@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int test_cases;                     // test cases taken as input
+    cin>>test_cases;
+    
+    for (int i=0; i<test_cases; i++)
+    {
+        int numbers,difference;          // numbers and key difference taken as input
+        cin>>numbers>>difference;           
+    
+        int temp = difference;           // variable assigned to store the difference
+    
+        if (difference==0)               // if value of k is zero then no change in sequence
+            for (int i=1; i<=numbers; i++)
+                cout<<i<<" ";
+        
+        else if (numbers % (2*difference) == 0) // if twice the difference is observed only
+            for(int i=1; i<=numbers; i++)       // then it becomes possible to reduce it 
+            {                                   // from the original
+                cout<<(i+temp)<<" ";
+                if (i % difference == 0)        // considering original number shouldnt be less 
+                    temp *= -1;                 // the difference, so taken negative part
+            }
+    
+        else
+            cout<<-1<<" ";
+            cout<<endl;
+}
+    return 0;
+}
