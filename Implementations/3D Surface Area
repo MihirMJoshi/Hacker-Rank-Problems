@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+int diff(int mid, int l, int r, int up, int down)
+{                                                         // to calculate                                                                                   visible surface area of coord. i,j
+    if(l>=mid) l=mid;
+    if(r>=mid) r=mid;
+    if(up>=mid) up=mid;
+    if(down>=mid) down=mid;
+    int sum = 2 + 4*mid - l-r-up-down;
+    return sum;
+}
+int main()
+{
+    int h,w;
+    cin>>h>>w;  
+    int grid[h+2][w+2];                                     // to make a boundary of zeroes on 2d                                                             array
+    for(int i=0; i<(h+2); i+=1)
+    { 
+        for(int j=0; j<(w+2); j+=1)
+        {
+            if(i==0 || i==(h+1) || j==0 || j==(w+1)){
+                grid[i][j]=0;
+            }
+            else cin>>grid[i][j];
+        }
+    }
+    
+    int sum=0;
+    for(int i=0; i<(h+2); i+=1)
+    {                                                       // add all the visible surface area of                                                             each coordinates 
+        for(int j=0; j<(w+2); j+=1)
+        {
+            if(i!=0 && i!=(h+1) && j!=0 && j!=(w+1))
+              sum+=diff(grid[i][j],grid[i][j-1],grid[i][j+1],grid[i-1][j],grid[i+1][j]);  
+        }
+    }
+    cout<<sum;
+    return 0;
+}
