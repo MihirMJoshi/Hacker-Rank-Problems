@@ -1,0 +1,27 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+void strangeCounter(long long int time_to_find_value_of_counter) 
+{
+long long int starting_value=3; //begining value of counter is 3
+    while (time_to_find_value_of_counter > starting_value)
+    {
+        time_to_find_value_of_counter -= starting_value;  // ( finding out the nearest difference                                                           //   from the initial value and the                                                               //   desired time)
+        
+        starting_value *= 2;                              //  the base value is being multiplied                                                                 by two
+    }
+
+    cout<<(starting_value-time_to_find_value_of_counter+1)<<endl;       
+    
+}
+
+int main()
+{
+    long long int time_to_find_value_of_counter;
+    cin>>time_to_find_value_of_counter;
+    
+    strangeCounter(time_to_find_value_of_counter);
+    
+    return 0;
+}
