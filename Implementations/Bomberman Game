@@ -1,0 +1,78 @@
+#include<bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int rows,columns,time;
+    cin>>rows>>columns>>time;
+    
+    char matrix[2002][2002], matrix1[2002][2002], matrix2[2002][2002], matrix3[2002][2002];
+    
+    for (int i=0; i<rows; i++)
+        cin>>matrix[i];
+    
+    // considering matrix as input matrix to be taken
+    // matrix1 - instant when all the bombs are planted (ie at t=2 second)
+    // since we are assuming the bombs are planted from t=0th second
+    // so at (t=0)th and (t=1)th second no change is observed
+    // matrix2 will show the area after bombs planted at (t=0)th second are exploded (t=3)rd              instant
+    // matrix3 will show the area after the bombs are filled at (t=2 second)
+    
+    for (int i=0; i<rows; i++)
+        for (int j=0; j<columns; j++)
+        {
+            matrix1[i][j]='O';
+            matrix2[i][j]='O';
+            matrix3[i][j]='O';
+        }
+    
+    //case 1: instant when (t=3)rd second has reached
+    
+    for (int i=0; i<rows; i++)
+        for (int j=0; j<columns; j++)
+            if (matrix[i][j]=='O')
+            {
+                matrix2[i][j]='.';
+                if (i<(rows-1))     matrix2[i+1][j]='.';
+                if (i>0)            matrix2[i-1][j]='.';
+                if (j<(columns-1))  matrix2[i][j+1]='.';
+                if (j>0)            matrix2[i][j-1]='.';
+            }
+    
+    //case 2: instant when (t=5)th second is reached and remaining bombs that were planted at           (t=2)th second is about to explode
+    
+    for (int i=0; i<rows; i++)
+        for (int j=0; j<columns; j++)
+            if (matrix2[i][j]=='O')
+            {
+                matrix3[i][j]='.';
+                if (i<(rows-1))     matrix3[i+1][j]='.';
+                if (i>0)            matrix3[i-1][j]='.';
+                if (j<(columns-1))  matrix3[i][j+1]='.';
+                if (j>0)            matrix3[i][j-1]='.';
+            }
+    
+    // at t=0 and t=1 no change same as it is
+    
+    if (time==0 || time==1 )
+    {
+        for (int i=0; i<rows; i++)
+            cout<<matrix[i]<<endl;
+                    return 0;
+    }
+    
+    // at t=5,9,13.......second, bombs placed at next instant are about to explode
+     if ((time-1)%4 == 0)
+        for (int i=0; i<rows; i++)
+            cout<<matrix3[i]<<endl;
+    
+    // at t=3,7,11...... second, bombs placed at first instant shall explode 
+    else if ((time-1)%2 == 0)
+        for (int i=0; i<rows; i++)
+            cout<<matrix2[i]<<"\n";
+    
+    // at t=2,t=4,t=6........... bombs placed at all places
+    else
+        for (int i=0; i<rows; i++)
+            cout<<matrix1[i]<<endl;
+    return 0;
+}
