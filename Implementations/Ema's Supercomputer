@@ -1,0 +1,70 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int rows,columns;                                   // global variable defined
+int max_area; int result1; int result2;             
+char matrix[16][16], matrix1[16][16];
+
+void reset_the_matrix()                             // reset function to ensure contents of the 
+{                                                   // matrix1 are transferred to original matrix
+    for (int i=0; i<rows; i++)
+        for (int j=0; j<columns; j++)
+            matrix[i][j]=matrix1[i][j];
+}
+
+int find_max_length_of_plus(int x, int y)
+{                                                   // finding the maximum size of plus
+    int d=1;
+    while ((x-d >= 0) && (y-d >= 0) && (x+d < rows) && (y+d < columns) && (matrix[x+d][y] == 'G')             && (matrix[x-d][y] == 'G') && (matrix[x][y+d] == 'G') && (matrix[x][y-d] == 'G'))
+        d++;                     // The conditions in while loop are to ensure that the element is
+    return d;                    // neither across the boundaries of the matrix
+}                                // it is also to ensure that the element is labelled as G
+    
+
+
+int twoPlus()
+{
+    max_area=0;                                    // define the maximum area
+    for (int i=0; i<rows; i++)                     // rows vector defined along with column vector
+        for (int j=0; j<columns; j++)
+        {
+            reset_the_matrix();                    // reset function is used to ensure matrix1's 
+            if (matrix[i][j] == 'G')               // contents are stored in matrix
+            {
+                result1=find_max_length_of_plus(i,j);      // finding out maximum size of matrix
+                while(result1>0)
+                {
+                    reset_the_matrix();                    // matrix size has been reset
+                    for (int temp=0; temp<result1; temp++)
+                    {
+                        matrix[i+temp][j]='B';             // once the initial plus has been
+                        matrix[i-temp][j]='B';             //locked, we are filling it 
+                        matrix[i][j+temp]='B';             //temporarily in order to
+                        matrix[i][j-temp]='B';             //avoid being counted as again
+                    }
+                    for (int l=0; l<rows; l++)             // finding new plus again
+                        for (int m=0; m<columns; m++)
+                            if (matrix[l][m]=='G')
+                        {
+                            result2=find_max_length_of_plus(l,m);   // stored in result
+                            max_area=max(max_area,((4*(result1-1)+1)*(4*(result2-1)+1)));
+                        }
+                    result1--;
+                }
+            }
+        }
+    return max_area;
+}
+
+int main()
+{
+    cin>>rows>>columns;            
+    for (int i=0; i<rows; i++)
+        for (int j=0; j<columns; j++)
+            {
+                cin>>matrix[i][j];
+                matrix1[i][j]=matrix[i][j];      // matrix1 contains the copy of of matrix
+            }                                    // values in matrix have been in alternating    
+    cout<<twoPlus()<<endl;                       // nature
+    return 0;
+}
