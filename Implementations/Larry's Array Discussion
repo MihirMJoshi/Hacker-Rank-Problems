@@ -1,0 +1,50 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+// algorithm : count number of swaps in an insertion sort
+// if number of swaps are even then print YES
+// else print NO
+
+void insertion_sort (int n, int numbers[1000])
+{
+    int count=0; int j;
+    for (int i=1; i<n; i++)             // assigning a for loop for the control of next element
+    {
+        int temp = numbers[i];          // temporary variable is choosen as next variable
+        for (j=i-1; j>=0; j--)          // secondary loop is used
+        {
+            if ( numbers[j]>temp )      // numbers are compared and temporary variable is measured
+            {
+                numbers[j+1]=numbers[j];    // numbers are swapped accordingly
+                count++;
+            }
+            else
+                break;                      // breaks takes out from the control loop
+        }
+            numbers[j+1]=temp;              // temporary variable is taken to next level wihtin 
+    }                                       // the second loop
+    if (count%2 == 0)                       
+        cout<<"YES"<<endl;
+    else
+        cout<<"NO"<<endl;
+}
+
+int main()
+{
+    int t;                             // define the test cases needed
+    cin>>t;                            // total number of test cases taken as input
+    
+    int n;
+    int numbers[10000];
+        
+    for (int i=0; i<t; i++)
+    {
+        cin>>n;                         // size of the sequence or integer list
+        
+        for (int i=0; i<n; i++)  
+            cin>>numbers[i];            // numbers taken in the sequence
+        
+       insertion_sort(n, numbers);
+    }
+    return 0;
+}
