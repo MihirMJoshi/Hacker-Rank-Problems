@@ -1,40 +1,25 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-vector <int> solve(vector < int > grades)
+void grading_students (int grades[1000],int n)
 {
-    unsigned int i;
-    for (i=0;i<grades.size();i++)
-    {
-        if (grades.at(i)<38)
-            cout<<grades.at(i)<<endl;
-        else if (grades.at(i)%5 >=3)
-    
-            cout<<(grades.at(i)+(5-(grades.at(i)%5)))<<endl;
-        else
-        	cout<<grades.at(i)<<endl;
-    }  
-    vector <int> l(0);
-    return l;
-}    
+    for (int i=0; i<n; i++)
+        ((grades[i] % 5 > 2) && (grades[i] > 37)) ? (grades[i] += (5- (grades[i] % 5))) :                    grades[i];                     // first for loop to caclulate the marks
+                                          // conditional operators used, if remainder is either 
+    for (int i=0; i<n; i++)               // 3 or 4 for all marks greater than 37
+        cout<<grades[i]<<endl;            // marks printed after beig rounded off
+}
 
-int main() {
-    int n;
-    cin >> n;
-    //cout <<endl;
-    vector<int> grades(n);
-    for(int grades_i = 0; grades_i < n; grades_i++)
-    {
-       cin >> grades[grades_i];
-    }
-    vector < int > result = solve(grades);
-    for (ssize_t i = 0; i < result.size(); i++) 
-    {
-        cout << result[i] << (i != result.size() - 1 ? "\n" : "");
-    }
-    cout << endl;
+int main()
+{
+    int n;                                  // Take up the input values
+    cin>>n;                                 // total count of marks to be calculated
     
-
+    int grades[1000];
+    
+    for (int i=0; i<n; i++)
+        cin>>grades[i];                     // grades are taken as the input values
+    
+    grading_students (grades,n);            // function 
     return 0;
 }
