@@ -1,0 +1,54 @@
+#include <bits/stdc++.h>
+using namespace std;
+int main()
+{
+    int n;                  // take the length of the set of numbers
+    cin>>n;
+    
+    int set[100000]; int set_copy[100000];      // define the values as set and make its copy at 
+                                                // the time of taking its input values
+    for (int i=0; i<n; i++)
+    {
+        cin>>set[i];
+        set_copy[i]=set[i];
+    }
+    
+    int count=0; int flag=0; int left,right; int x,y; // define the variable
+                                                      // variable count is used to define
+    sort(set,set+n);                                  // and count the number of swaps needed
+    
+    for (int i=0; i<n; i++)
+        if (set[i] != set_copy[i])
+        {
+            count++;                                  // this count will help to determine                                                                  possible or not
+            if (flag==0)                              // flag function would be used to mark 
+            {                                         // the positions or index
+                left=i;
+                right=i;
+            }
+            else                                       // marking the index position
+                right=i;
+            flag=1;
+        }
+    
+    if (flag != 0)
+    {
+        if (count==2)                                // 2 counts means a swap would be ideal
+            cout<<"yes"<<endl<<"swap "<<(left+1)<<" "<<(right+1);
+        
+        else
+        {
+            for (x=left, y=right; x<=y; x++,y--)      // using two variables to run a single loop
+                if (set[x] != set_copy[y])            // finding out whether reverse is possible 
+                {                                     // or not
+                    cout<<"no"<<endl;
+                    return 0;
+                }
+                    cout<<"yes"<<endl<<"reverse "<<(left+1)<<" "<<(right+1);
+            }
+        }
+        
+    return 0;        
+    
+}
+        
