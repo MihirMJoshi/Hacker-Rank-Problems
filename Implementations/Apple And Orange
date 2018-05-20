@@ -2,45 +2,33 @@
 
 using namespace std;
 
-void countApplesAndOranges(int s, int t, int a, int b, vector <int> apples, vector <int> oranges)
+void countApplesAndOranges(int s, int t, int a, int b, vector <int> apple, vector <int> orange)
 {
-    int x=0;
-    int y=0;
-    vector <int> applesRange;
-    vector <int> orangesRange;
-    
-    for (int i=0; i<apples.size(); i++)
-        applesRange.push_back(a+apples.at(i));
-    for (int i=0; i<oranges.size(); i++)
-        orangesRange.push_back(b+oranges.at(i));
-    
-    for(int i=0; i<applesRange.size(); i++)
-        if (applesRange.at(i)>=s && applesRange.at(i)<=t)
-            x++;
-    for(int i=0; i<orangesRange.size(); i++)
-        if(orangesRange.at(i)>=s && orangesRange.at(i)<=t)
-            y++;
+    int x=0;        // x denotes count of apples
+    int y=0;        // y denotes count of oranges
+
+    for(int i=0; i<apple.size(); i++)
+        (((a+apple.at(i))>=s && (a+apple.at(i))<=t) ? (x++) : (x += 0));
+            
+    for(int i=0; i<orange.size(); i++)
+        ( ( (b+orange.at(i))>=s && (b+orange.at(i))<=t) ? (y++) : (y += 0));
+            
     cout<<x<<endl<<y;
 }
 
-int main() {
-    int s;
-    int t;
-    cin >> s >> t;
-    int a;
-    int b;
-    cin >> a >> b;
-    int m;
-    int n;
-    cin >> m >> n;
+int main() 
+{
+    int s; int t; int a; int b; int m; int n;
+    cin>>s>>t>>a>>b>>m>>n;
+    
     vector<int> apple(m);
-    for(int apple_i = 0; apple_i < m; apple_i++){
+    for(int apple_i = 0; apple_i < m; apple_i++)
        cin >> apple[apple_i];
-    }
+    
     vector<int> orange(n);
-    for(int orange_i = 0; orange_i < n; orange_i++){
+    for(int orange_i = 0; orange_i < n; orange_i++)
        cin >> orange[orange_i];
-    }
+    
     countApplesAndOranges(s, t, a, b, apple, orange);
     return 0;
 }
