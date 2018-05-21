@@ -1,81 +1,31 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int solve(long long int n, long long int p)
+void drawing_book (int n, int p)
 {
-long long int f=0; long long int b=0;
-long long int i;
-if (n % 2 == 0)
-    {   
-        if ( p % 2 == 0)
-        {
-            if (p==n )
-                goto label;
-            else 
-            {
-                for (i=1;i<p+1;i=i+2)
-                f++;
-                for (i=n;i>p;i=i-2)
-                b++;
-            }
-        }
-        else
-        {
-            if ( p==1)
-                goto label;
-            else
-            {
-                for (i=1; i<p; i=i+2)
-                    f++;
-                for (i=n; i>p; i=i-2)
-                    b++;
-            }
-        }
-    }
-else
-{
-    if ( p % 2 == 0)
-    {
-        if ((p+1)==n)
-        goto label;
-        
-        else
-        {
-            for (i=1;i<p+1;i=i+2)
-            f++;
-            for (i=n;i>p+1;i=i-2)
-            b++;
-        }
-    }
-    else
-    {
-       if (p==1 || p==n)
-           goto label;
-        else
-        {
-          for (i=1;i<p;i=i+2)
-          f++;
-          for (i=n; i>p; i=i-2)
-           b++;
-        }
-    }
+    int count1=0; int count2=0;             // count1 is for counting pages from front
+                                            // count2 is for counting pages from behind
+    
+    // Basic Algorithm: [n(last page)-1(first page)]/2 = total number of pages
+    // count of p from front + count of p from behind = total number of pages
+    
+    // for front count, (if p is odd) : (p-1)/2
+    //                  (if p is even): (p-1)/2+1
+    (p%2!=0) ? count1=(p-1)/2 : count1=( (p-1)/2+1 );
+    
+    // for behind count = total no of pages - front count
+    // for behind count, (if n is odd) : (p-1)/2
+    //                   (if n is even): (p-1)/2+1
+    (n%2!=0) ? count2=abs( ((n-1)/2)-count1) : count2=abs( ((n-1)/2)+1-count1);
+    
+    cout<<min(count1,count2);       // minimum of both count needed
 }
-if (f>b)
-return b;
-else
-return f;
-    label: return 0;
-
-}
-        
-int main() 
+            
+int main()
 {
-    long long int n;
-    cin >> n;
-     long long int p;
-    cin >> p;
-    int result = solve(n, p);
-    cout << result << endl;
+    int n,p;              // n stands for number of pages and p stands for the desired page number
+    cin>>n>>p;
+    
+    drawing_book(n,p);    // function of drawing book is called
     return 0;
 }
