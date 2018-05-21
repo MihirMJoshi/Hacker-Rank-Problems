@@ -1,33 +1,27 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int countingValleys(int n, string s) 
+//Algorithm : final level should be zero and the moment when level becomes zero must be point at which the last letter is U(indicating a height)
+
+void counting_valleys(string trip, int n)
 {
-    int v=0;
-    int lvl=0;
-    int i;
-   // n=strlen(s);
-    for ( i=0; i<n; i++)
+    int level=0; int valley=0;          // valleys and levels are mentioned
+    for (int i=0; i<n; i++)
     {
-        if (s.at(i)=='U')
-            lvl++;
-        if(s.at(i)=='D')
-            lvl--;
-        if(lvl==0 && s.at(i)=='U')
-            v++;
-    }
-    return v;
-    // Complete this function
+        (trip[i]=='U') ? level++ : level--;                 // if its a height level increases
+        (level==0 && trip[i]=='U')? valley++ : valley;      // by one unit and if its a depth
+    }                                                       // level decreases by a unit
+        cout<<valley;
 }
 
-int main() 
+int main()
 {
-    int n;
-    cin >> n;
-    string s;
-    cin >> s;
-    int result = countingValleys(n, s);
-    cout << result << endl;
+    int n;                          // number of variations faced in Gary's hike trip
+    cin>>n;
+    
+    string trip;                    // use of string to determine variations faced
+    cin>>trip;
+    
+    counting_valleys(trip,n);       // valleys incorporated in the function
     return 0;
 }
