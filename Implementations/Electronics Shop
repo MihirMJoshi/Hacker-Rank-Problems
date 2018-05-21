@@ -1,44 +1,31 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int getMoneySpent(vector < int > keyboards, vector < int > drives, int s)
+void Electronics_Shop(int b, int n, int m, vector<int> keyboards, vector<int> USB)
 {
-    int sum=0;
-    int max_sum=0;
-    for (int i=0; i<keyboards.size();i++)
-    {
-        for(int j=0; j<drives.size();j++)
-        {
-            sum=keyboards.at(i)+drives.at(j);
-            if ((max_sum < sum) && (sum <= s))
-                max_sum=sum;
-        }
-    }
-    if (max_sum == 0)
-        return -1;
-    else
-        return max_sum;
+    int maximum_spent=0;
+    
+    for (int i=0; i<n; i++)             // Algorithm is maximum spent is positive print value
+        for (int j=0; j<m; j++)         // else print -1
+            if (keyboards[i]+USB[j]<=b)
+                maximum_spent=max(maximum_spent,(keyboards[i]+USB[j]));
+    ((maximum_spent>0) ? cout<<maximum_spent : cout<<"-1");
 }
 
-int main() 
+int main()
 {
-    int s;
-    int n;
-    int m;
-    cin >> s >> n >> m;
+    int b,n,m;      // b stands for budget, n stands for number of keyboard units, m stands 
+                    // for number of USB units
+    cin>>b>>n>>m;
+    
     vector<int> keyboards(n);
-    for(int keyboards_i = 0; keyboards_i < n; keyboards_i++)
-    {
-       cin >> keyboards[keyboards_i];
-    }
-    vector<int> drives(m);
-    for(int drives_i = 0; drives_i < m; drives_i++)
-    {
-       cin >> drives[drives_i];
-    }
-    //  The maximum amount of money she can spend on a keyboard and USB drive, or -1 if she can't purchase both items
-    int moneySpent = getMoneySpent(keyboards, drives, s);
-    cout << moneySpent << endl;
+    for (int i=0; i<n; i++)
+        cin>>keyboards[i];
+    
+    vector<int> USB(m);
+    for (int j=0; j<m; j++)
+        cin>>USB[j];
+    
+    Electronics_Shop(b,n,m,keyboards,USB);
     return 0;
-}
+}                   
