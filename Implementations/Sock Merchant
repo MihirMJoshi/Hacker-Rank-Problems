@@ -1,21 +1,21 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
-
-int main() {
-	int n;
+int main()
+{
+    int n; int result=0; int freq[101]={};
     cin>>n;
-	int freq[101] = {};
-	for(int i = 0; i < n; i++) {
+    
+    for (int i=0; i<n; i++)
+    {
         int c;
-        cin >> c;
+        cin>>c;
         freq[c]++;
     }
-
-	int res = 0;
-	for(int i = 0; i <= 100; i++){
-         res += freq[i] / 2;
-     }
-	cout << res << endl;
-	return 0;
+    
+    for (int i=0; i<102; i++)               // the range of for loop variable i will be from 0
+        result += (freq[i]/2);              // to 101, because we are considering the element
+    cout<<result;                           // int the array repeated not the size of array
+    
+    return 0;
 }
