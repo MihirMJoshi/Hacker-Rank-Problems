@@ -3,19 +3,19 @@ using namespace std;
 
 int main()
 {
-    int n; int result=0; int freq[101]={};
-    cin>>n;
+    int number_of_pairs; int total_pairs=0; int freq[101]={};
+    cin>>number_of_pairs;
     
-    for (int i=0; i<n; i++)
+    for (int i=0; i<number_of_pairs; i++)
     {
-        int c;
-        cin>>c;
-        freq[c]++;
+        int sock;
+        cin>>sock;
+        freq[sock]++;
     }
     
-    for (int i=0; i<102; i++)               // the range of for loop variable i will be from 0
-        result += (freq[i]/2);              // to 101, because we are considering the element
-    cout<<result;                           // int the array repeated not the size of array
+    for (int i=0; i<102; i++)                   // the range of for loop variable i will be from 0
+        total_pairs += (freq[i]/2);             // to 101, because we are considering the element
+    cout<<total_pairs;                          // int the array repeated not the size of array
     
     return 0;
 }
