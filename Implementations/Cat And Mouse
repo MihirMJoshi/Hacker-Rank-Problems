@@ -1,0 +1,23 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+void CatAndMouse(int x, int y, int z)
+{
+    if (abs(x-z)==abs(y-z))             //Algorithm: Measuring Distances & Comparing Them
+        cout<<"Mouse C\n";
+    else 
+        (abs(x-z)>abs(y-z)) ? cout<<"Cat B \n" : cout<< "Cat A \n";
+}
+
+int main()
+{
+    int t; int x,y,z;              // t stands for test cases or queries, 
+    cin>>t;                        // x stands for position of Mouse A 
+                                   // y stands for position of Mouse B
+    for(int i=0; i<t; i++)         // z stands for position of Mouse C
+    {
+        cin>>x>>y>>z;
+        CatAndMouse(x,y,z);
+    }
+    return 0;
+}
