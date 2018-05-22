@@ -1,101 +1,79 @@
-#include <iostream>
-#include <vector>
-#include <climits>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
-vector<vector<int> > mirror(vector<vector<int> > v) 
+int calculate( vector< vector<int> > matrix,  vector< vector<int> > magic)
 {
-    for (int j = 0; j < 3; j++) 
-    {
-        swap(v[j][0], v[j][2]);
-    }
-    return v;
-}
-
-/*rotate  = transpose + vertical flip*/
-vector<vector<int> > rotate(vector<vector<int> > v) 
-{
-    vector<vector<int> >res(3,vector<int>(3));
-
-    for (int i = 0; i < 3; i++)
-    {/*transpose*/
-        for (int j = 0; j < 3; j++) 
-        {
-            res[i][j] = v[j][i];
-        }
-    }
-
-    for (int j = 0; j < 3; j++) 
-        {/*vertical flip*/
-            swap(res[0][j], res[2][j]);
-        }
-
-    return res;
-}
-
-
-int calculate(vector <vector <int> > v, vector <vector <int> > magic) 
-{
-    int cost = 0;
-
-    for (int i = 0; i < 3; i++) 
-    {
-        for (int j = 0; j < 3; j++)
-        {
-            cost += abs(v[i][j] - magic[i][j]);
-        }
-    }
-
+    int cost=0;                                 // cost is being calculated as difference 
+    for (int i=0; i<3; i++)                     // between input matrix and magic reference 
+        for (int j=0; j<3; j++)                 // matrix
+            cost += abs(matrix[i][j]-magic[i][j]);
     return cost;
 }
 
+vector< vector<int> > mirror(vector< vector<int> > magic)
+{
+    for (int i=0; i<3; i++)                     // the magic matrix is rotated which is again
+        for (int j=0; j<3; j++)                 // taken as a reference
+            swap(magic[j][0], magic[j][2]);     // MIRROR IS PLACED VERTICALLY
+    return magic;
+}
 
+// algorithm to rotate matrix
+// take its transpose first
+// then swap or take vertical flip (swap out the columns)
+
+vector<vector<int> > rotate(vector<vector<int> > magic) 
+{
+    vector <vector<int> > result (3, vector<int>(3)); // important to create a tmeporary variable
+                                                      // cannot be shifted directly
+    // transpose first
+    for (int i=0; i<3; i++)                     // transpose matrix is taken
+        for (int j=0; j<3; j++)
+            result[j][i]=magic[i][j];
+    
+    // vertical flip should be done next
+    for (int i=0; i<3; i++)                      // rows 1 and 3 are swapped
+        for (int j=0; j<3; j++)
+            swap(result[0][j], result[2][j]);
+    
+    return result;
+}
 
 int main()
-{
-    vector<vector<int> >v(3, vector<int>(3));
-    for (int i = 0; i < 3;i++)
+{ 
+    vector < vector<int> > magic(3, vector<int>(3));    // magic vector taken for our reference
+    magic={{8,3,4},{1,5,9},{6,7,2}};
+   
+   vector < vector<int> > matrix(3, vector<int>(3));   // input matrix
+    for (int i=0; i<3; i++)
+        for (int j=0; j<3; j++)
+            cin>>matrix[i][j];
+           
+    int min=INT_MAX;                                    // INT_MAX stands out for maximum range
+    int n=4;                                            // for variable v, n is 4 since we can do
+    int cost=0;                                         // 4 rotations in a 3*3 matrix
+    
+    // Total 8 possiblities of a magic marix: 
+    // 1.original matrix (rotate it 4 times)             - 4 possiblities
+    // 2.mirror (of original matrix)-(rotate it 4 times) - 4 possiblities
+    
+    while (n-- >0)
     {
-        for (int j = 0; j < 3;j++) 
-        {
-            int tmp;
-            cin >> tmp;
-            v[i][j] = tmp;
-
-        }
+        cost=calculate(matrix,magic);                  // cost is calculated from current position
+        (min>cost)?(min=cost):(min);                    
+        magic=rotate(magic);                            // the reference matrix(magic) is rotated                                                            for difference values of cost
     }
-
-    vector<vector<int> >magic(3, vector<int>(3));
-    magic = {{ 8,1,6 },{ 3,5,7 },{ 4,9,2 }};
-
-    int min = INT_MAX;
-    int cost = 0;
-    int n = 4;
-
-    while (n-->0) 
+    
+    n=4;                                                // mirror matrix taken and n is again
+    magic=mirror(magic);                                // set to 4
+    
+    while (n-- >0)
     {
-        cost = calculate(v,magic);
-        if (min>cost)
-        {
-            min = cost;
-        }
-        magic = rotate(magic);
+        cost=calculate(matrix,magic);
+        (min>cost)?(min=cost):(min);
+        magic=rotate(magic);
     }
-
-    magic = mirror(magic);
-    n = 4;
-    while (n-->0)
-    {
-        cost = calculate(v, magic);
-        if (min>cost) 
-        {
-            min = cost;
-        }
-        magic = rotate(magic);
-
-    }
-
-    cout << min << endl;
-    return 0;
+    
+    cout<<min;
+            return 0;           
 }
