@@ -1,31 +1,23 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int hurdleRace(int k, vector <int> height) 
+void Hurdle_race(vector <int> heights, int k)
 {
-    int max=0;
-    for (int i=0; i<height.size(); i++)
-    {
-        if (height.at(i)>max)
-            max=height.at(i);
-    }
-    if (k > max)
-        return 0;
-    else
-        return abs(max-k);
+    int maximum=0;
+    for (int i=0; i<heights.size(); i++)
+    maximum=max(maximum,heights[i]);
+    (k >= maximum) ? cout<<"0" : cout<<abs(maximum-k);
 }
 
-int main() 
+int main()
 {
-    int n;
-    int k;
-    cin >> n >> k;
-    vector<int> height(n);
-    for(int height_i = 0; height_i < n; height_i++){
-       cin >> height[height_i];
-    }
-    int result = hurdleRace(k, height);
-    cout << result << endl;
+    int n; int k;           // n stands for number of hurdles 
+    cin>>n>>k;              // k stands for the height upto which Dan can jump naturally
+    
+    vector<int> heights(n);         // heights is a vector units which represents hurdles with 
+    for (int i=0; i<n; i++)         // variable heights
+        cin>>heights[i];
+    
+    Hurdle_race(heights,k);           // function call
     return 0;
 }
