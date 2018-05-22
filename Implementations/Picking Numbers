@@ -1,34 +1,30 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
- 
-
-  int pickingNumbers(vector <int> a) 
-  {
+int picking_numbers(vector<int> numbers)
+{
     int z=0;
-    int freq[100]={0};     
-    for(int i=0;i<a.size();i++)
-    {
-        freq[a[i]]++;
-        //cout << a[i] << endl ;
-    }
+    int freq[100]={0};                          // to store the count of each and every number
     
-    for(int i=2;i<100;i++)
-       z=max(z,freq[i]+freq[i-1]);
+    for (int i=0; i<numbers.size(); i++)        // count of each and every number is stored in
+        freq[numbers[i]]++;                     // an array labelled as freq
+    
+    for (int i=2; i<100; i++)
+        z=max(z,(freq[i]+freq[i-1]));           // IMPORTANT LOGIC: FREQ[I]+FREQ[I-1]
+                                                // INCLUDES ALL CONSECUTIVE SETS OF INTEGERS
     return z;
-    }
-
+    
+}
 
 int main()
 {
-    int n;
-    cin >> n;
-    vector<int> a(n);
-    for(int a_i = 0; a_i < n; a_i++){
-       cin >> a[a_i];
-    }
-    int result = pickingNumbers(a);
-    cout << result << endl;
+    int n;                          // n stands for number of elements in the given array
+    cin>>n;
+    
+    vector<int> numbers(n);         // numbers is the list of elements in an array
+    for (int i=0; i<n; i++)
+        cin>>numbers[i];
+    
+    cout<<picking_numbers(numbers); // function call
     return 0;
 }
