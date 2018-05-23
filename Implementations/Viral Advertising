@@ -1,30 +1,26 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
-int viralAdvertising(int n) 
+void ViralAdvertising (int n)
 {
-   n=n-1;
-   int like=2;
-   int dislike=3; int sum=0;
-   int recieved, new_like, new_dislike;
-   while (n>0)
-   {
-       recieved = like *3;
-       new_like = recieved/2;
-       new_dislike = recieved-new_like;  
-       like = new_like;
-       --n;
-       sum = like + sum;       
-   }
-    return sum+2;
+    n--;
+    int sum=0;
+    int like=2; int shared = 5;
+    
+    while (n!=0)
+    {
+        shared = like*3;                // shared is (people likes on previous day) * 3
+        like = shared / 2;              // new like for the day are (shared divided by )
+        sum = sum + like;               // total sum is cumalative cost of individual sum    
+        n--;
+    }
+    cout<<(sum+2);
 }
 
-int main() 
+int main()
 {
-    int n;
-    cin >> n;
-    int result = viralAdvertising(n);
-    cout << result << endl;
+    int n;                  // required number of day to find cumalative likes
+    cin>>n;
+    ViralAdvertising (n);   // Function Call
     return 0;
 }
