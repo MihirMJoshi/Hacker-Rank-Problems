@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n; int k; int q;        // 'n' stands for array size, 'k' stands for number of rotations
+    int s; int x;               // 'q' stands for total number of queries, 's' is used to solve
+    vector<int> numbers(n);     // list of numbers presented in an array, 'x' is used to solve
+    
+    cin>>n>>k>>q;
+    for (int i=0; i<n; i++)
+    cin>>numbers[i];            // the numbers in the array list
+    
+    
+    for (int i=0; i<q; i++)
+    {   
+        cin>>x;
+        
+        k %= n;                 // multiples of n will result same sequence after even rotations
+        s=n+x-k;                // rotation result    
+        
+        (s<n) ? s : s-=n;
+        cout<<numbers[s]<<endl;
+    }
+    return 0;
+}       
