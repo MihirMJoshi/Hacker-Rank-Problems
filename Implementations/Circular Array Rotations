@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void Circular_Array_Rotation (vector<long long int> array,long long int m, long long int p)
+{
+    rotate(array.begin(),array.begin()+array.size()-m,array.end());
+        cout<<array[p]<<"\n";
+}
+
+int main()
+{
+    long long int n,m,q;          // 'n' stands number of elements in an array,'m' stands for                                           number of times rotation has to be done, 'q'stands for the                                         queries
+    cin>>n>>m>>q;
+    
+    vector<long long int> array(1000000);   // set of numbers in an array
+    for (long long int i=0; i<n; i++)
+        cin>>array[i];
+    
+    for (long long int i=0; i<q; i++)
+    {
+        long long int p;
+        cin>>p;                                 // values taken in as input
+        Circular_Array_Rotation(array,m,p);     //function call
+    }
+    return 0;
+}
