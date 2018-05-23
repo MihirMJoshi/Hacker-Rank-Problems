@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int beautifulDays(int i, int j, int k) 
+{
+	int num,count=0;                   // vairables are assigned num as original number
+	int quo, newNum = 0, x = 0;        //quo and new Num would be used for making reversal digit
+	for (int x = i; x <= j ; x++)
+	{
+		num = x; newNum = 0;
+		
+		while (num != 0)
+		{
+			quo = num % 10;                      // IMPORTANT ALGORTIHM:
+			newNum = 10 * newNum + quo;          // Reversal of Digits: 
+			num = num / 10;            
+		}
+		(x-newNum)%k==0 ? count++ : count;
+    }
+	return count;
+}
+
+int main()
+{
+    int lower_limit, upper_limit,k;         // lower_limit & upper_limit stands for lower
+    cin>>lower_limit>>upper_limit>>k;       // value and higher value respctively
+   
+    int result = beautifulDays(lower_limit, upper_limit, k); // function call
+    cout<<result<<endl;
+
+        return 0;
+}                           
