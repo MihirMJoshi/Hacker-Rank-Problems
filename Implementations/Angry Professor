@@ -1,37 +1,30 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void angryProfessor(int k, vector <int> a) 
+void angryProfessor (vector<int> students, int k)
 {
-    int c=0;
-    for (int i=0; i<a.size(); i++)
-    {
-        if (a.at(i) <= 0)
-            c++;
-    }
-    if (c >= k)
-        cout<<"NO \n";
-    else
-        cout<<"YES \n";
-    // Complete this function ok
+    int count1=0;
+    
+    for (int i=0; i<students.size(); i++)
+        if (students[i]<=0)                 // if students arrive early (their times are in                                                      negative integers)
+            count1++;
+    (count1 >= k) ? cout<<"NO\n" : cout<<"YES\n";
 }
 
-int main() {
+int main() 
+{
     int t;
     cin >> t;
-    for(int a0 = 0; a0 < t; a0++)
+    for(int i = 0; i < t; i++)
     {
-        int n;
-        int k;
-        cin >> n >> k;
-        vector<int> a(n);
-            for(int a_i = 0; a_i < n; a_i++)
-            {
-                cin >> a[a_i];
-            }
-        angryProfessor(k, a);
-        // cout << result << endl;
+        int n; int k;                   // n & k stands for students and required number of 
+        cin >> n >> k;                  // of students needed by professor
+        vector<int> students(n);            
+        
+            for(int students_i = 0; students_i < n; students_i++)
+                cin >> students[students_i];
+            
+        angryProfessor(students,k);           // function call
     }
     return 0;
 }
