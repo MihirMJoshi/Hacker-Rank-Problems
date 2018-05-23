@@ -1,25 +1,20 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int saveThePrisoner(long long int n, long long int m, long long int s)
+void Save_The_Prisoner(int n, int m, int s)
 {
-    return ((( m - 1 + s - 1) % n) + 1);
-    // Complete this function
+       cout<<((( m - 1 + s - 1) % n) + 1)<<endl; // IMPORTANT ALGORITHM FOR DISTRIBTUTION OF                                                           SWEETS
 }
 
-int main() 
+int main()
 {
-    long long int t;
-    cin >> t;
-    for(long long int a0 = 0; a0 < t; a0++)
+    int t; int n,m,s;                  // 't stands for test case 'n';tands for number of sweets
+    cin>>t;                            // 'm' stands for number of prisoners
+                                       // 's'stands for the prisoner from where passing of sweets
+    for(int i=0; i<t; i++)             // will start
     {
-        long long int n;
-        long long int m;
-        long long int s;
-        cin >> n >> m >> s;
-        int result = saveThePrisoner(n, m, s);
-        cout << result << endl;
+    cin>>n>>m>>s;
+    Save_The_Prisoner(n,m,s);           // function call
     }
     return 0;
 }
