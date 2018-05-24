@@ -1,29 +1,28 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int findDigits(int n) 
+int FindDigits (int n)
 {
-    int r=n;
-    int c=0;
-        while (r>0)
-        {
-            if (((r % 10) != 0) && (n % (r % 10) == 0))
-                c++;
-            r /= 10;
-        }
-    return c;
+    int temp = n; int digit; int count=0;
+    while (temp!=0)
+    {
+        (temp % 10 !=0) && (n % (temp % 10)==0) ? (count++) : (count);  // use both conditions 
+        temp /= 10;                 // simultaneously
+    }
+    return count;
 }
 
-int main() 
+int main()
 {
-    int t;
-    cin >> t;
-    for(int a0 = 0; a0 < t; a0++){
-        int n;
-        cin >> n;
-        int result = findDigits(n);
-         cout << result << endl;
+    int t;                              // sample test cases are taken into consideration
+    cin>>t;
+    
+    for (int i=0; i<t; i++)
+    {
+        int n;                          // 'n' stands for the number taken
+        cin>>n;
+        int result = FindDigits(n);
+        cout<<result<<endl;
     }
     return 0;
 }
