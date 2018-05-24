@@ -1,0 +1,23 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int day,month,year, day1,month1,year1;      // day, month and year are the time when book was
+                                                // returned. day1, month1 and year1 are the time                                                   // when book was of due date
+    cin>>day>>month>>year>>day1>>month1>>year1;
+    
+    if ( (day<=day1 && month<=month1 && year<=year1) || (year1 > year) || (year1>=year) && (month1 > month) ) 
+        cout<<"0";                                                      // Complex Condtition
+    
+    else if (year1<year)                                                // Condition 1
+        cout<<"10000";
+    
+    else if ( (year1 >= year) && (month > month1) )                     // Condition 2
+        cout<<abs(month-month1)*500;
+    
+    else if ( (day > day1) && (month <= month1) && (year <= year1) )    // Condition 3
+        cout<<abs(day-day1)*15;
+    
+    return 0;
+}       
