@@ -1,31 +1,30 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void cutTheSticks(vector <int> arr) 
-{    
-   sort(arr.begin(),arr.end());
-   reverse(arr.begin(),arr.end());
-    
-    while (!arr.empty())
+void Cut_The_Sticks (vector<int> array)
+{
+    sort(array.begin(), array.end());
+    reverse(array.begin(), array.end());
+    while (!array.empty())              // IMPORTANT FUNCTION : TILL ARRAY IS NOT EMPTY
     {
-        cout<<arr.size()<<endl;
-        for (int i=0;i<arr.size();i++)
-        arr.at(i) -= arr.at(arr.size()-1);
-        while (!arr.empty() && arr.back()==0)
-            arr.pop_back();
+        cout<<array.size()<<endl;               //Important Algorithm
+        for(int i=0; i<array.size(); i++)
+        array[i] -= array.at( array.size()-1 );
+        while (!array.empty() && array.back()==0)
+            array.pop_back();
     }
 }
 
-int main() 
+int main()
 {
-    int n;
-    cin >> n;
-    vector<int> arr(n);
-    for(int arr_i = 0; arr_i < n; arr_i++)
-    {
-       cin >> arr[arr_i];
-    }
-    cutTheSticks(arr);   
-    return 0;
+    int n;                      // 'n' stands for list of integers present in an array
+    cin>>n;
+    
+    vector<int> array(n);       // 'array' stands for the list of lengths of sticks
+    for(int i=0; i<n; i++)
+        cin>>array[i];
+    
+    Cut_The_Sticks(array);     // function call
+        
+        return 0;
 }
