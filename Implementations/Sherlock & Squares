@@ -1,37 +1,25 @@
-#include <bits/stdc++.h>
-#include<cmath>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void squares(long long int a, long long int b) 
+int Sherlock_And_Squares(int lower_limit, int upper_limit )
 {
-    long long int h = sqrt(b); long long int l = sqrt(a);
-    if (h!=l)
-    {
-        if (l*l!=a)
-            cout<<h-l<<endl;
-        else
-            cout<<h-l+1<<endl;
-    }
-    else 
-    {
-        if (l*l==a)
-            cout<<h-l+1<<endl;
-        else
-            cout<<h-l<<endl;
-    }
+    long long int l = sqrt(lower_limit); long long int h = sqrt(upper_limit); int value;
+        (l*l!=lower_limit) ? value = (h-l) : value = (h-l+1); //BASIC ALGORTIHM, IMPORTANT
+    return value;
 }
-
-int main() {
-    int q;
-    cin >> q;
-    for(int a0 = 0; a0 < q; a0++)
+    
+    
+int main()
+{
+    long long int t;   long long int ul, ll;           // 't' stands for test cases, 'ul' stands                                                              for upper limit
+    cin>>t;                        // 'll' stands for lower limit
+    
+    for (int i=0; i<t; i++)        // 'll' stands for lower_limit, 'ul' stands for upper_limit
     {
-        long long int a;
-        long long int b;
-        cin >> a >> b;
-        squares(a, b);
-        //cout << result << endl;
+        cin>>ll>>ul;
+        int result = Sherlock_And_Squares(ll,ul);       // function call
+        cout<<result<<endl;
     }
-    return 0;
+    
+        return 0;
 }
