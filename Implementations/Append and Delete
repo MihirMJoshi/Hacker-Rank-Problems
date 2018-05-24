@@ -1,40 +1,36 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void appendAndDelete(string s, string t, int k) 
-{
-    int z = min (s.length(), t.length());
-    int commonlength = 0;
-    for (int i=0; i<z; i++)
-        if (s.at(i) == t.at(i))
-        commonlength++;    
-    
-    if ((s.length()+t.length()-2*commonlength) > k )
-        cout<<"No";
-    
-    else if (((s.length()+t.length()-2*commonlength) % 2) == (k % 2))
-    {
-        if ((commonlength == z) || (commonlength+1 < k))
-            cout<<"Yes";
-        else
-            cout<<"No";
-    }
-    
-    else if (s.length()+t.length() < k )
-        cout<<"Yes";
-    else 
-        cout<<"No";
-}
+// Basic Algorithm:
+// If the sum of lengths of both strings - 2*cpmmon length should be greater than k
+// the above lengths are even and odd then further if common length is equal to min length or sum of common length and 1 should be lesser than k
+// else k must be greater than both lengths
 
-int main() 
+
+void Append_N_Delete(string s, string t, int k)
 {
-    string s;
-    cin >> s;
-    string t;
-    cin >> t;
-    int k;
-    cin >> k;
-    appendAndDelete(s, t, k);
-    return 0;
+    int commonlength=0; int z=min(s.length(), t.length());
+    for (int i=0; i<z; i++)                                  // for common length least string
+        (s[i]==t[i]) ? (commonlength++):(commonlength);      // will be considered for for loop
+        
+    if (s.length()+t.length()-2*commonlength > k)           // condition 1 
+        cout<<"No";
+    
+    else if ( ((s.length()+t.length()-2*commonlength) % 2) == (k % 2) )
+        (commonlength==z) || (commonlength+1 < k) ? cout<<"Yes" : cout<<"No";
+    
+    else if (s.length()+t.length() < k)
+        cout<<"Yes";
+    else
+        cout<<"No";
+}                                   
+
+int main()
+{
+    string s; string t; int k;      // 's' stands for string 1, 't' stands for string 2
+    cin>>s>>t>>k ;                  // 'k' stands for the integer
+        
+        Append_N_Delete(s,t,k);
+        
+        return 0;
 }
