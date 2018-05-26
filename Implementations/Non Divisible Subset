@@ -1,0 +1,46 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//ALGORITHM : IMPORTANT
+// For any number K, the sum of 2 values (A & B) is evenly divisible by K if the sum of the remainders of A/K + B/K is K. 
+//(There is also a special case where both A & B are evenly divisible, giving a sum of 0.)
+
+// For any such remainder, there is 1 and only 1 other remainder value which will make a sum divisible by K.
+
+// Example: with K of 5, remainder pairs are 1+4 & 2+3. Given the numbers with a remainder of 1, they can't be paired with ANY of the numbers with remainder 4 (and vice versa). So, for the number of values in the resultant set, choose the larger of values with remainder 1 vs. values with remainder 4. Choose the larger set of remainder 2 vs remainder 3.
+
+// For the special case where remainder is 0, given the set of all values which are individually divisible by K, they can't be paired with any others. So, at most 1 value which is evenly divisible by K can be added to the result set.
+
+// For even values of K, the equal remainder is simular to the 0 case. For K = 6, pairs are 1+5, 2+4, 3+3. For values with remainder 3, at most one value can be added to the result s
+
+int main()
+{
+    int n; int k;           // 'n' & 'k' stands for the number of elements in the array and the
+    cin>>n>>k;              // number to be checked divisible
+    
+    
+    int count=0; int remainder[k]={0};  // count to count the total numbers and remainders 
+    int number;                         // to store the remainders
+    
+    for (int i=0; i<n; i++)
+    {
+        cin>>number;                    // number taken as input and remainders are stored in it
+        remainder[number % k]++;
+    }
+    
+    count += min(remainder[0],1);       // if all elements are divisible by respective number 'k' 
+                                       // it contributes atmost 1 unit in final answer
+    
+    if (k % 2 == 0)
+    {
+        for (int i=1; i<k/2; i++)           // if 'k' is even then we will consider upto k/2 only
+            count += max(remainder[i], remainder[k-i]);
+                count++;                    // finally atmost 1 will be added (for eg k=6, then                                                     remainders with 3 & 3 will also be added)
+    }
+     else 
+        for (int i=1; i<( (k/2)+1) ; i++)   // 'k' odd case then upto ( (k/2) + 1) will be                                                          considered
+            count += max(remainder[i], remainder[k-i]); 
+    
+    cout<<count<<endl;
+    return 0;    
+}
