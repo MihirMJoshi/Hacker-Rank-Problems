@@ -1,0 +1,96 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n; int k;
+    cin >> n >> k;
+    int rQ; cq;
+    
+    cin >> rQ >> cQ;
+    int r=n+1,l=0,u=0,d=n+1,ur=0,ul=0,dr=n+1,dl=n+1;
+    int c=0;
+    
+    for(int a0 = 0; a0 < k; a0++)
+    {
+        int rO;
+        int cO;
+        cin >> rO >>cO;
+        
+        if(rO==rQ)
+        { 
+            if(cO>cQ)
+                r=min(r,cO);
+            else
+                l=max(l,cO);
+        }
+        else if(cO==cQ)
+        {
+            if(rO>rQ)
+                d=min(d,rO);
+            else
+                u=max(u,rO);
+        }
+        else if(rQ+cQ==rO+cO)
+        {
+            if(rO>rQ)
+                dl=min(dl,rO);
+            else
+                ur=max(ur,rO);
+        }
+        else if(rQ-cQ==rO-cO)
+        {
+            if(rQ<rO)
+                dr=min(dr,rO);
+            else
+                ul=max(ul,rO);
+        }
+    }    
+    
+    if(rQ-1>0)  
+        c+=abs(rQ-u)-1; 
+    
+    if(rQ+1<=n) 
+        c+=abs(rQ-d)-1; 
+    
+    if(cQ+1<=n) // 
+        c+=abs(cQ-r)-1; 
+    
+    if(cQ-1>0) 
+        c+=abs(cQ-l)-1; 
+    
+    if(ur!=0)
+    { 
+        if(cQ+1<=n && rQ-1>0) 
+            c+=abs(rQ-ur)-1;
+    }
+    
+    else c+=min(rQ-1,n-cQ);
+    
+    if(ul!=0)
+    {  
+        if(rQ-1>0&&cQ-1>0) 
+            c+=abs(rQ-ul)-1;
+    }
+    
+    else c+=min(rQ-1,cQ-1);
+    
+    if(dr!=n+1)
+    {
+        if(rQ+1<=n&&cQ+1<=n) 
+            c+=abs(rQ-dr)-1;
+    }
+    
+    else c+=min(n-rQ,n-cQ);
+    
+    if(dl!=n+1)
+    {
+        if(rQ+1<=n&&cQ-1>0) 
+            c+=abs(rQ-dl)-1;
+    }
+    
+    else c+=min(n-rQ,cQ-1);
+    
+    cout<<c<<endl;
+    return 0;
+}
