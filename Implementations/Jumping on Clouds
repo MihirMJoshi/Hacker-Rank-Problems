@@ -5,18 +5,20 @@ using namespace std;
 int jumpingOnClouds(vector <int> c) 
 {
     int n = c.size(); int res=0;
-    for(int i=0;i<(n-1);) 
-    c[i+2]?(res++,i++):(res++,i+=2);        
-    return res;
-}
+    for(int i=0;i<(n-1);)                   // Basic Algortihm : 
+    (c[i+2]==1)?(res++,i++):(res++,i+=2);   // Try for maximum of 2 jumps
+    return res;                             // if the next to next cloud is labelled as one
+}                                           // then take one jump
 
-int main() {
-    int n;
+int main() 
+{
+    int n;                                  // number of clouds
     cin >> n;
-    vector<int> c(n);
-    for(int c_i = 0; c_i < n; c_i++){
+    
+    vector<int> c(n);                       // labelling by zero or one whether the cloud is 
+    for(int c_i = 0; c_i < n; c_i++)        // thunder cloud or normal cloud
        cin >> c[c_i];
-    }
+    
     int result = jumpingOnClouds(c);
     cout << result << endl;
     return 0;
