@@ -1,26 +1,26 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int equalizeArray(vector <int> arr, int freq[101]) 
+void Equalize_The_Array(int freq[101], vector<int> numbers)
 {
     int z=0;
-    for (int i=0; i<101; i++)
-        z=max(z,freq[i]);
-    return (arr.size()-z);
+    for (int i=1; i<101;i++)    // finding out most repeated numbers in the array sequence
+    z=max(z,freq[i]);
+    cout<<(numbers.size()-z);   // subtract it from the total size
 }
 
-int main() {
-    int n;
-    cin >> n;
-    vector<int> arr(n);
-    int freq[101]={};
-    for(int arr_i = 0; arr_i < n; arr_i++)
+int main()
+{
+    int n;                      // 'n' stands for number of elements in the array
+    cin>>n;
+    
+    int freq[101]={};           // frequency of numbers being repeated in the vector
+    vector<int> numbers(n);     // the numbers stored in the vector
+    for (int i=0; i<n; i++)
     {
-       cin >> arr[arr_i];
-       freq[arr[arr_i]]++;
+        cin>>numbers[i];        // the numbers and their intensity
+        freq[numbers[i]]++;
     }
-    int result = equalizeArray(arr,freq);
-    cout << result << endl;
+    Equalize_The_Array(freq,numbers);
     return 0;
 }
