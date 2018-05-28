@@ -1,96 +1,76 @@
-#include <bits/stdc++.h>
+#include<bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    int n; int k;
-    cin >> n >> k;
-    int rQ; cq;
+    int n; int k;       // 'n' & 'k' stands for the dimensions of chessboard and number of 
+    cin>>n>>k;          // obstacles on it
     
-    cin >> rQ >> cQ;
-    int r=n+1,l=0,u=0,d=n+1,ur=0,ul=0,dr=n+1,dl=n+1;
-    int c=0;
+    int c=0;            // determining counts
     
-    for(int a0 = 0; a0 < k; a0++)
+    int rQ; int cQ;     // position of the queen on it
+    cin>>rQ>>cQ;
+    
+    // Step 1 : Define dimensions of the square chessboard
+    
+    int u=0;    int l=0;       // dimensions of the chessboard covered as edges of a square 
+    int d=n+1;  int r=n+1;
+    
+    int ul=0;   int ur=0;      // dimensions covered w.r.t diagnols
+    int dr=n+1; int dl=n+1;
+    
+    // Step 2 : Extract the position of obstacles and keep it within the for loop
+    
+    for (int i=0; i<k; i++)
     {
-        int rO;
-        int cO;
-        cin >> rO >>cO;
+        int rO; int cO;     // position of obstacles
+        cin>>rO>>cO;
         
-        if(rO==rQ)
-        { 
-            if(cO>cQ)
-                r=min(r,cO);
-            else
-                l=max(l,cO);
-        }
-        else if(cO==cQ)
-        {
-            if(rO>rQ)
-                d=min(d,rO);
-            else
-                u=max(u,rO);
-        }
-        else if(rQ+cQ==rO+cO)
-        {
-            if(rO>rQ)
-                dl=min(dl,rO);
-            else
-                ur=max(ur,rO);
-        }
-        else if(rQ-cQ==rO-cO)
-        {
-            if(rQ<rO)
-                dr=min(dr,rO);
-            else
-                ul=max(ul,rO);
-        }
-    }    
-    
-    if(rQ-1>0)  
-        c+=abs(rQ-u)-1; 
-    
-    if(rQ+1<=n) 
-        c+=abs(rQ-d)-1; 
-    
-    if(cQ+1<=n) // 
-        c+=abs(cQ-r)-1; 
-    
-    if(cQ-1>0) 
-        c+=abs(cQ-l)-1; 
-    
-    if(ur!=0)
-    { 
-        if(cQ+1<=n && rQ-1>0) 
-            c+=abs(rQ-ur)-1;
+        if (rO==rQ)                              //Obstacle & Queen followed on the same row
+            (cO>cQ) ? r=min(r,cO) : l=max(l,cO);
+        
+        else if (cO==cQ)                         //Obstacle & Queen followed on the same column
+            (rO>rQ) ? d=min(d,rO) : u=max(u,rO);
+        
+        else if (rQ+cQ==rO+cO)                   // Obstacle & Queen across the diagnol '\'
+            (rO>rQ) ? dl=min(dl,rO) : ur=max(ur,rO);
+        
+        else if (rQ-cQ==rO-cO)                   // Obstacle & Queen across diagnol '/'
+            (rO>rQ) ? dr=min(dr,rO) : ul=max(ul,rO);
     }
+        // Step 3 : If Queen's location is on edges
+        
+        (rQ+1<=n) ? (c += abs(rQ-d)-1) : c;        // on the extreme bottom side
+        
+        (rQ-1> 0) ? (c += abs(rQ-u)-1) : c;        // on the extreme top side
+        
+        (cQ+1<=n) ? (c += abs(cQ-r)-1) : c;        // on the extreme right side
     
-    else c+=min(rQ-1,n-cQ);
-    
-    if(ul!=0)
-    {  
-        if(rQ-1>0&&cQ-1>0) 
-            c+=abs(rQ-ul)-1;
-    }
-    
-    else c+=min(rQ-1,cQ-1);
-    
-    if(dr!=n+1)
-    {
-        if(rQ+1<=n&&cQ+1<=n) 
-            c+=abs(rQ-dr)-1;
-    }
-    
-    else c+=min(n-rQ,n-cQ);
-    
-    if(dl!=n+1)
-    {
-        if(rQ+1<=n&&cQ-1>0) 
-            c+=abs(rQ-dl)-1;
-    }
-    
-    else c+=min(n-rQ,cQ-1);
-    
-    cout<<c<<endl;
+        (cQ-1> 0) ? (c += abs(cQ-l)-1) : c;        // on the extreme left side
+        
+        // Step 4 : If Queen's location is on corner
+        
+        if (ul!=0)                                  // corner 1
+            (rQ-1>0 && cQ-1>0) ? (c += abs(rQ-ul)-1) : c;
+        else
+            c += min(rQ-1,cQ-1);
+        
+       if (ur!=0)                                   // corner 2
+           (rQ-1>0 && cQ+1<=n) ? (c += abs(rQ-ur)-1) : c;
+        else
+            c += min(rQ-1,n-cQ);
+        
+        if (dr!=0)                                  // corner 3
+            (rQ+1<=n && cQ+1<=n) ? (c += abs(rQ-dr)-1) : c;
+        else 
+            c += min(n-rQ, n-cQ);
+        
+        if (dl!=0)                                  // corner 4
+            (rQ+1<=n && cQ-1>0) ? (c += abs(rQ-dl)-1) : c;
+        else
+            c += min(n-rQ, cQ-1);
+        
+        cout<<c<<endl;
+        
     return 0;
 }
