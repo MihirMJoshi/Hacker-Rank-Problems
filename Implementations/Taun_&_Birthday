@@ -1,25 +1,31 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-void Taum_and_birthday(int b, int w, int x, int y, int z)
+void TaumAndBday(long long int w, long long int b, long long int wc, long long int bc , long long int z)
 {
-   if (z >= abs(x-y)) 
-        cout<<(b*x + w*y)<<endl;
-    else if (x <= y) 
-        cout<<((b+w)*x + w*z)<<endl;
-    else 
-        cout<<((b+w)*y + b*z)<<endl; 
+    if (z>=abs(wc-bc))                          // Condition 1
+        cout<< (w*wc+b*bc)<<endl;
+    else if (wc>=bc)                            // Condition 2
+        cout<<((w+b)*bc + w*z)<<endl;
+    else                                        // Condition 3
+        cout<<((w+b)*wc + b*z)<<endl;
 }
+
 
 int main()
 {
-    int t,w,b,x,y,z;
+    int t;      //'t' stands for test cases
     cin>>t;
+    
+    long long int w; long long int b;                       // 'b' & 'w' stands for white & black                                                               gifts
+    
+    long long int wc; long long int bc ;long long int z;     // 'wc','bc' & 'z' stands for cost                                                                of white, black and conversion
+                                                            // charges
     for (int i=0; i<t; i++)
     {
-        cin>>b>>w>>x>>y>>z;
-        Taum_and_birthday (b,w,x,y,z);
-    }  
+        cin>>b>>w;
+        cin>>bc>>wc>>z;
+        TaumAndBday(w,b,wc,bc,z);  // function call
+    }
     return 0;
 }
