@@ -1,36 +1,32 @@
-#include <cmath>
-#include <cstdio>
-#include <vector>
-#include <iostream>
-#include <algorithm>
+#include<bits/stdc++.h>
 using namespace std;
 
-
-int main() 
+int main()
 {
-    long int p,q;
+    long int p; long int q;               // 'p' and 'q' stands for upper and lower ranges                                                      respectively
     cin>>p>>q;
-    int flag=0;
-    for(long int t=p;t<=q;t++)
-        {
-        if(t==0)
-            cout<<t;
+    int flag=0;                           // flag to mark out the numbers
+    
+    for (long int i=p; i<=q; i++)          // loop from lower range to higher range
+    {
+        if (i==0)
+            cout<<i<<"\t";
         else
         {
-            long int n=1;
-            for( long int i=10;i<=t;i=i*10)
-                n=i;
-            n=n*10;
-            long int s=t*t;
-            if((s%n)+(s/n)==t)
-                {
-                flag=1;
-                cout<<t<<" ";
-                }      
+            long int n=1;                   
+            for (int j=10; j<=i; j=j*10)    //to find the length of the digit (3 digit or 4 digit)
+                n=j;                        // number
+            n *= 10;
+            long int s = i*i;
+            
+            if ((s/n)+(s%n) == i)
+            {
+                flag=1;                     // flag is initiated when modified kaprekar's number
+                cout<<i<<"\t";              // are found
+            }
         }
     }
-    
-    if(flag==0)
-        cout<<"INVALID RANGE";
+    if (flag==0)
+        cout<<"INVALID RANGE \n";
     return 0;
 }
