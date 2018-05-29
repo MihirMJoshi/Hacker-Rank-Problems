@@ -1,48 +1,43 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
 int main()
 {
-    int n,matrix[101][101], type[101], container[101];
-    int suma=0; int sumb=0;
-    int t; cin>>t;
+    int ty[101]; int con[101]; int suma=0; int sumb=0; int matrix[101][101];int found = 0;
+    int t; cin>>t;                       // considering all the test cases
     while (t--)
     {
-        cin>>n;
-        for (int i=0; i<n; i++)
-            for(int j=0; j<n; j++)
+        int n; cin>>n;                  // number of number of containers and type
+        
+        for (int i=0; i<n; i++)         // input taken as a matrix
+            for (int j=0; j<n; j++)
                 cin>>matrix[i][j];
+        
         for (int i=0; i<n; i++)
         {
-            for(int j=0;j<n;j++)
-            {
-                suma += matrix[j][i];
-                sumb += matrix[i][j];
-            }
-        type[i] = suma;
-        container[i] = sumb;
-        suma = 0; sumb = 0;
-        }
-        int found = 0;
-        for (int i=0; i<n; i++)
-        {
-            int found = 0;
             for (int j=0; j<n; j++)
             {
-                if (type[i]==container[j])
+                suma += matrix[i][j];      // taking the sum of individual rows and columns
+                sumb += matrix[j][i];
+            }
+            ty[i]=suma;                   // columns show the container and rows show the type
+            con[i] =sumb;
+            suma=0; sumb=0;
+        }
+        
+        for (int i=0; i<n; i++)
+        {
+            found=0;
+            for (int j=0; j<n; j++)     // Main ALOGRITHM:
+                if (ty[i]==con[j])      // if sum of diagnols are equal
                 {
-                    type[i]=0;
-                    container[j]=0;
-                    found=1;
+                    ty[i]=0;            // clear all the diagnols
+                    con[j]=0;
+                    found=1;            // initilize the found and break the loop
                     break;
                 }
-            }
-            if (!found)
-                break;
         }
-        if (found)
-         cout<<"Possible";
-         else cout<<"Impossible";
+        (found!=0) ? cout<<"Possible\n" : cout<<"Impossible\n";
     }
+    return 0;
 }
