@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void Halloween_Sale(int p, int d, int s, int m)
+{
+    int total_cost=0; int games=-0;
+    for (int i=0; ;i++)
+    {
+        total_cost = total_cost + max((p-d*i),m);   // essential condition to be followed
+            games++;
+        if (total_cost>s)                           // break the loop
+            break;
+    }
+    cout<<(games-1);
+}
+
+int main()
+{
+    int p; int d; int m; int s;     // 'p','d','m' & 's' stands for the cost of first game         
+    cin>>p>>d>>m>>s;                // difference and least value and pocket money respectively
+    
+    Halloween_Sale(p,d,s,m);        // function call
+    return 0;
+}
