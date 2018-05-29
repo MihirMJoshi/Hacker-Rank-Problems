@@ -4,20 +4,20 @@ using namespace std;
 int Beautiful_Triplets(int d, vector<int> numbers)
 {
     int count = 0;
-    for (int i=0; i<numbers.size(); i++)
-        for (int j=i+1; j<numbers.size(); j++)
+    for (int i=0; i<numbers.size(); i++)                        // Loop 1
+        for (int j=i+1; j<numbers.size(); j++)                  // Loop 2
         {
-            if (numbers[j]-numbers[i]>d)
+            if (numbers[j]-numbers[i]>d)                        // If condition
                 break;
-            for (int k=j+1; k<numbers.size(); k++)
+            for (int k=j+1; k<numbers.size(); k++)              // Loop 3
             {
-                if (numbers[k]-numbers[j]>d)
+                if (numbers[k]-numbers[j]>d)                    // If Condition
                     break;
-                if (numbers[k]-numbers[j]==d && numbers[j]-numbers[i]==d)
+                if (numbers[k]-numbers[j]==d && numbers[j]-numbers[i]==d) // Condition
                     count++;
             }            
         }
-    return count;
+    return count;                                               // Counter
 }
 
 int main()
