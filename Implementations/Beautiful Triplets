@@ -1,0 +1,35 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int Beautiful_Triplets(int d, vector<int> numbers)
+{
+    int count = 0;
+    for (int i=0; i<numbers.size(); i++)
+        for (int j=i+1; j<numbers.size(); j++)
+        {
+            if (numbers[j]-numbers[i]>d)
+                break;
+            for (int k=j+1; k<numbers.size(); k++)
+            {
+                if (numbers[k]-numbers[j]>d)
+                    break;
+                if (numbers[k]-numbers[j]==d && numbers[j]-numbers[i]==d)
+                    count++;
+            }            
+        }
+    return count;
+}
+
+int main()
+{
+    int n; int d;                                       // number of elements and beautiful                                                                 difference defined as 'n' & 'd'
+    cin>>n>>d;
+    
+    vector<int> numbers(n);                             // set of numbers 
+    for (int numbers_i=0; numbers_i<n; numbers_i++)
+        cin>>numbers[numbers_i];
+    
+    int result = Beautiful_Triplets(d, numbers);         // function call
+    cout<<result<<endl;
+    return 0;
+}
