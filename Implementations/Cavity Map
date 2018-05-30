@@ -1,38 +1,35 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-vector <string> cavityMap(vector <string> arr) 
+vector <string> Cavity_Map (vector <string> matrix)
 {
-    int n = arr.size() ;
-    for(int i = 1 ; i < n-1 ; i++) //ignoring first and last rows
-    {
-        for(int j = 1 ; j < n-1 ; j++) //ignoring first and last columns
-        {
-            if(   arr[i][j]-48 > arr[i-1][j]-48 &&
-                   arr[i][j]-48 > arr[i+1][j]-48 &&
-                   arr[i][j]-48 > arr[i][j-1]-48 &&
-                   arr[i][j]-48 > arr[i][j+1]-48)
-                arr[i][j] = 'X';
-        }
-    }
-    return arr ;
+    // remember to start the loop from 1 and not zero
+    
+    for (int i=1; i<matrix.size()-1; i++)                         // ignoring last rows
+        for (int j=1; j<matrix.size()-1; j++)                     // ignoring last column
+            
+            if (    matrix[i][j]-48 > matrix[i-1][j]-48 && 
+                    matrix[i][j]-48 > matrix[i+1][j]-48 &&        // CONDITION 
+                    matrix[i][j]-48 > matrix[i][j+1]-48 && 
+                    matrix[i][j]-48 > matrix[i][j-1]-48     )
+            matrix[i][j]='X';
+    
+    return matrix;
 }
 
-int main() {
-    int n;
-    cin >> n;
-    vector<string> arr(n);
-    for(int grid_i = 0; grid_i < n; grid_i++){
-       cin >> arr[grid_i];
-    }
-    vector <string> result = cavityMap(arr);
+int main()
+{
+    int n; cin>>n;                                      // 'n' stands for dimensions of matrix
+    vector <string> matrix(n);                          // matrix to be declared
+    
+    for (int i=0; i<n; i++)                             // initialized matrix
+            cin>>matrix[i];
+    
+    vector <string> result = Cavity_Map(matrix);        // function call
+    
     for (ssize_t i = 0; i < result.size(); i++) 
-    {
         cout << result[i] << (i != result.size() - 1 ? "\n" : "");
-    }
-    cout << endl;
-
-
+    cout<<endl;
+    
     return 0;
 }
