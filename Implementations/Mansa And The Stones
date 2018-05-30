@@ -1,24 +1,24 @@
 #include<bits/stdc++.h>
 using namespace std;
 
-int main() 
+int main()
 {
-    int t;
-    cin>>t;
-    for(int i=0;i<t;i++)
+    int t; cin>>t;                                      // 't' stands for test case
+    
+    for (int i=0; i<t; i++)
     {
-        int sum=0,n,a,b,first=0;
-        cin>>n;
-        cin>>a;
-        cin>>b;
-        first=(n-1)*min(a,b);
-        cout<<first<<" ";
-        while(sum+first<(n-1)*max(a,b))
+        int sum=0; int first; int n; int a; int b;
+        cin>>n>>a>>b;                               // 'n' as number of stones, 'a' as the first                                                          difference & 'b' as second consecutive                                                            difference
+        
+        first=(n-1)*min(a,b);                       // (n-1) taken because we havent counted the                                                          first stone (which happens to be zeroth                                                            stone)
+        cout<<first<<"\t";
+        
+        while ( (sum+first)<((n-1)*max(a,b)) )      // while loop to print all the numbers
         {
-            sum+=abs(b-a);
-            cout<<first+sum<<" ";
+            sum += abs(b-a);                        // Important ALGORTIHM
+            cout<<sum+first<<"\t";
         }
-        cout<<endl;
+        cout<<endl; 
     }
     return 0;
 }
