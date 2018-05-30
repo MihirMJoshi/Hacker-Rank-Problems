@@ -1,32 +1,28 @@
-#include <bits/stdc++.h>
-
+#include<bits/stdc++.h>
 using namespace std;
 
-int chocolateFeast(int n, int c, int m)
+void Chocolate_Fest (int n, int c, int m)
 {
-    int chocolates = n/c; int x = chocolates; int y=0;
-    if (chocolates<m)
-        return chocolates;
+    int chocolates = n / c; int x=chocolates; int extra=0;
     while (chocolates>=m)
     {
-        chocolates -= m;
-        chocolates++;
-        y++;
+        chocolates -= m;                         // excess wrappers
+        chocolates++;                            // additional wrapper obtained on new chocolate
+        extra++;                                 // additonal wrapper
     }
-    return x+y;
+    cout<<(x+extra);
 }
 
-int main() 
+int main()
 {
-    int t;
-    cin >> t;
-    for(int a0 = 0; a0 < t; a0++){
-        int n;
-        int c;
-        int m;
-        cin >> n >> c >> m;
-        int result = chocolateFeast(n, c, m);
-        cout << result << endl;
+    int t; cin>>t;          // number of test cases
+    for (int i=0; i<t; i++)
+    {
+        int n; int c; int m;        // 'n' stands for the cost to be spent, 'c' stands for
+        cin>>n>>c>>m;               // the cost of one chocolate, 'm' stands for the exchange
+                                    // rate 
+        
+        Chocolate_Fest(n,c,m);      // function call
     }
     return 0;
 }
