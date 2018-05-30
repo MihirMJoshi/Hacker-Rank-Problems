@@ -1,0 +1,34 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n; int m;                   //'n' & 'm' stands for number of stations and number of space 
+    cin>>n>>m;                      // stations respectivley
+    
+    vector<int> space_stations(m); // space stations location
+    for (int i=0; i<m; i++)
+        cin>>space_stations[i];
+    
+    sort(space_stations.begin(),space_stations.end());
+    int res=0;
+    int j=0;
+    
+    for (int i=0; i<n; i++)
+    {
+        int r = abs(i-space_stations[j]);
+        if (j < m-1)
+        {
+            int k = abs(i-space_stations[j+1]);
+                if (r > k)
+                {
+                    j++;
+                    r = k;
+                }
+        }
+        res=max(res,r);
+    }
+    cout<<res<<endl;
+    
+    return 0;
+}
