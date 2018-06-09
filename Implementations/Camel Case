@@ -1,0 +1,19 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int CamelCase(string s)
+{
+    int count = 1; int i = 0;
+    while(i!=s.size())
+        count += isupper(s[i++])>0;         // IMPORTANT FUNCTION ISUPPER
+    return count;
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    int result = CamelCase(s);
+    cout<<result;
+    return 0;
+}
