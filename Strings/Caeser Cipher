@@ -1,0 +1,20 @@
+#include<bits/stdc++.h>
+using namespace std;
+    int main()
+{
+    int n; int r; string s;                 // 'n' as length of string
+    char a;                                 // 'r' as rotations, 'a' stands for the character
+                                            // 's' as string
+    cin>>n;
+    cin>>s;
+    cin>>r;
+    
+    for (int i=0; i<n; i++)
+        if (isalpha(s[i]))                      // if the letter is an alphabet or not
+        {
+            a = isupper(s[i]) ? 'A' : 'a';      // if upper or lower case
+            s[i] = (a+(s[i]-a+r)%26);           // matrix operation or ceaser rotations
+        }
+    cout<<s<<endl;
+    return 0;
+}
