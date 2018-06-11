@@ -7,8 +7,9 @@ void HackerrankCall (string s)
      int j = 0;
     
     for (int i=0; i<s.length(); i++)
-        (j < given_string.length() && s[i]==given_string[j]) ? j++ : j; // Important Algorithm
-    
+        (j < given_string.length() && s[i]==given_string[j]) ? j++ : j; 
+                                                                // Important Algorithm
+                                                                // Marks The Position of The                                                                        String Hackerrank
     (j==given_string.length() ? cout<<"YES\n" : cout<<"NO\n");
 }
 
