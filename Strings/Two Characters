@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string a = "abcdefghijklmnopqrstuvwxyz";
+
+int main()
+{
+    int n; cin>>n;                              //'n' stands for the name of person
+    string s; cin>>s;                           // 's' stands for the string name
+    
+    int maximum_length=0;                       // maximum length of the string needed
+    
+    for(int i=0; i<26; i++)
+     for(int j=i+1; j<26; j++)
+        {
+            char x = a[i];                      
+            char y = a[j];
+            string t = "";                                  // new string
+            for (int k=0; k<n; k++)
+                ( (s[k]==x || s[k]==y) ? t += s[k] : t );   // 't' stands for the new                                                                             string
+            
+            bool flag = true;
+            
+            for (int z=0; z+1<t.size(); z++)
+                if (t[z]==t[z+1])                           // Operations to be                                                                                  performed on the new                                                                              string
+                {
+                    flag = false;
+                    break;
+                }
+            
+    int new_size=t.size();                                  // finding out maximum length
+    if ( (flag) && (new_size>1) ) 
+        maximum_length = max(maximum_length,new_size);      // maximum lenngth
+        }
+    
+    cout<<maximum_length<<endl;
+    
+    return 0;
+}
