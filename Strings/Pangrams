@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    string s; int sum=0;
+    getline(cin,s);                 // input taken
+    
+    vector <char> z(26,0);          // to check all alphabets exists in this vector or not 
+    vector <char> y(26);            // stores all the lower letter alphabets
+    vector <char> x(26);            // stores all upper case letter alphabets
+    
+    for (int i=0; i<26; i++)
+    {
+        y[i]='a'+i;                 
+        x[i]='A'+i;
+    }    
+    
+    for (int i=0; i<s.length(); i++)
+        for (int j=0; j<26; j++)
+            (s[i]==y[j] || s[i]==x[j]) ? z[j]=1 : z[j];     // storing the values
+    
+    for (int i : z)                 // same as for (int i=0; i<z.size(); z++) sum += z[i];
+        sum=sum+i;
+    
+    (sum==26) ? cout<<"pangram" : cout<<"not pangram";  
+
+    return 0;
+}
