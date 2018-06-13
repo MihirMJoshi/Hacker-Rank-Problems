@@ -1,0 +1,22 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void BinaryString(string s)
+{
+    int c=0;
+    for (int i=0; i<s.size();)
+        (s[i]=='0' && s[i+1]=='1' && s[i+2]=='0') ? (c++,i=i+3) : (c,i++);  //Important Algorithm
+    cout<<c<<endl;    
+}
+
+int main()
+{
+    int n;            //'n' stands for the binary string
+    cin>>n;
+    
+    string s;         //'s' stands for the string name
+    cin>>s;
+
+    BinaryString(s);    // funciton call
+    return 0;
+}
