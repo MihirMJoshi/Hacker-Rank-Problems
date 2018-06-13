@@ -1,0 +1,24 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int LoveLetterMystery(string s)
+{
+    int count=0;
+    for (int i=0, j=s.size()-1; i<s.size()/2; i++,j--)      // dual variable to control a single                                                                  loop
+    		count += abs(s[i]-s[j]);
+    return count;
+}
+
+int main()
+{
+    int q; string s;                         // 'q' stands for queries
+    cin>>q;
+    
+    for (int i=0; i<q; i++)
+    {
+        cin>>s;
+        int result = LoveLetterMystery(s);  // function call
+        cout<<result<<endl;
+    }
+    return 0;
+}
