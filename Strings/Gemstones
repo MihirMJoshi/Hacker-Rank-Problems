@@ -3,28 +3,25 @@ using namespace std;
 
 int main()
 {
-    int t;                                                      //'t' tands for the test cases
+    int t;                                          //'t' stands for test cases
     cin>>t;
     
-    int alpha[26]={0}; int c=0;
-    
-    vector <string> s(t);                                       // store all strings in vector
-    
+    int alphabets[26]={0}; int count=0;             // useful to track and find out the common                                                            elements
+    vector <string> s(t);    
     for (int i=0; i<t; i++)
     {
-        cin>>s[i];                                              // inputs taken
+        cin>>s[i];
+        sort(s[i].begin(),s[i].end());                    // sorted elements
         
-        sort(s[i].begin(),s[i].end());                          // the specific string is                                                                         sorted(letters)
-    
-        s[i].erase(unique(s[i].begin(), s[i].end()), s[i].end());  // from the specific string                                                                         duplicacy of letters removed
+        s[i].erase(unique(s[i].begin(), s[i].end()),s[i].end());    // removing the duplicacy of                                                                        repeated letters in a                                                                              specific string
         for (int k=0; k<s[i].size(); k++)
         {
-            char x = s[i][k];
-            alpha[x - 'a']++;
-            (alpha[x - 'a']==t) ? c++ : c;
+            char z = s[i].at(k);                                    // specific count for each 
+                                                                    // character needed
+            alphabets[z-'a']++;                                     
+            (alphabets[z-'a']==t)?count++:count;                    // count calculated           
         }
     }
-    cout<<c<<endl;
-  
+    cout<<count;
     return 0;
 }
