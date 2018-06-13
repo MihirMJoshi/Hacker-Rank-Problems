@@ -1,0 +1,25 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void FunnyString(string s)
+{
+    string r = s;  int c=0;                                 
+    reverse(s.begin(),s.end());                             // reverse string
+    for (int i=0; i<s.size(); i++) 
+        abs(s[i]-s[i+1])==abs(r[i]-r[i+1]) ? c++ : c;       // Required Condition
+    
+        (c+1)==s.length()  ? cout<<"Funny\n" : cout<<"Not Funny\n";      // String Condition
+}
+
+int main()
+{
+    int q; string s;                    // 'q' stands for number of queries
+    cin>>q;                             // 's' stands for the string taken as input
+    
+    for (int i=0; i<q; i++)
+    {
+        cin>>s;
+        FunnyString(s);                 // function call
+    }
+    return 0;
+}
