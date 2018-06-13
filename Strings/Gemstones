@@ -1,0 +1,30 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int t;                                                      //'t' tands for the test cases
+    cin>>t;
+    
+    int alpha[26]={0}; int c=0;
+    
+    vector <string> s(t);                                       // store all strings in vector
+    
+    for (int i=0; i<t; i++)
+    {
+        cin>>s[i];                                              // inputs taken
+        
+        sort(s[i].begin(),s[i].end());                          // the specific string is                                                                         sorted(letters)
+    
+        s[i].erase(unique(s[i].begin(), s[i].end()), s[i].end());  // from the specific string                                                                         duplicacy of letters removed
+        for (int k=0; k<s[i].size(); k++)
+        {
+            char x = s[i][k];
+            alpha[x - 'a']++;
+            (alpha[x - 'a']==t) ? c++ : c;
+        }
+    }
+    cout<<c<<endl;
+  
+    return 0;
+}
