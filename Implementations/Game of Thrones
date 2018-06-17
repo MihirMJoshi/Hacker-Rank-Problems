@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+//Algortihm:
+// 1. string length is even with even number of alphabet frequency
+// 2. for odd string length only one alphabet should be used once and remaining of equal frequencies
+
+void GameOfThrones(string s)
+{
+    int sum=0; int freq[26]={0};
+    
+    for (int i=0; i<s.size(); i++)          // frequency of alphabets are taken
+        freq[s[i]-'a']++;
+    
+    for (int i=0; i<26; i++)                // occurances of frequency are taken down
+        sum += freq[i]%2;                   // sum should not be greater than one
+    
+    (sum>2) ? cout<<"NO" : cout<<"YES";
+}
+
+int main()
+{
+    string s;
+    cin>>s;
+    GameOfThrones(s);
+    
+    return 0;
+}
