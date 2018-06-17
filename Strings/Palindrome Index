@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n; string s;                  // 'n' stands for test cases
+    cin>>n;
+    
+    for (int i=0; i<n; i++)
+    {
+        cin>>s;
+        for (int i=0; i<s.size()/2; i++)
+            if (s[i]!=s[s.size()-1-i])
+            {
+                if ( (s[i+1]==s[s.size()-1-i]) && (s[i+2]==s[(s.size()-i-2)]) ) 
+                    // one position to the right of the specified number
+                    cout<<i<<endl;
+                else if ( (s[i+1]==s[s.size()-1-i-2]) && (s[i+2]==s[s.size()-1-i-3]) )
+                    // one position to the left of the specified number 
+                    cout<<s.size()-1-i<<endl;
+                goto jump;
+            }
+            cout<<"-1"<<endl;
+        jump: ;
+    }
+        return 0;
+}
