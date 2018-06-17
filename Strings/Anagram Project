@@ -1,0 +1,40 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int AnagramChallenge(string s)
+{
+    int i=0; int k=s.size()-1; int c=0;                    
+    int first[26]={0}; int second[26]={0};
+    
+    if ( (s.size() % 2) !=0 )
+        return -1;
+    
+    while (i<s.size()/2)
+    {
+        first[s[i++]-'a']++;
+        second[s[k--]-'a']++;
+    }
+    for (int i=0; i<26; i++)
+        // Important Algortihm
+        // For the two strings which have been evenly split into two halves
+        // The count of Alphabets of String One and Two are recorded
+        // number of the same counts are calculated
+        // Their Difference Are Taken Accordingly
+        
+        (first[i]<second[i] && second[i]!=0) ? c += abs(first[i]-second[i]) : c;
+    
+    return c;
+}
+int main()
+{
+    int q; string s;                             // 'q' stands for number of test cases
+    cin>>q;
+    
+    for (int i=0; i<q; i++)
+    {
+        cin>>s;
+        int result = AnagramChallenge(s);       // function call
+        cout<<result<<endl;
+    }
+    return 0;
+}
