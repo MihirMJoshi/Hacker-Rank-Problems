@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+bool myfunction(string i, string j)
+{
+    if (i.size()==j.size()) 
+        return (j>i);
+    else
+        return (j.size()>i.size());               // comparator only sorts if the strings are of                                                        equal size and pushes larger integer behind
+}
+
+int main()
+{
+    int q;                                              // 'q' stands for size of vector
+    cin>>q;
+    
+    vector <string> numbers(q);
+    for (int i=0; i<q; i++)                             // inputs taken
+        cin>>numbers[i];
+    
+    sort(numbers.begin(),numbers.end(),myfunction);     // sorting as a comparator
+    for (int i=0; i<q; i++)
+        cout<<numbers[i]<<endl;
+    
+    return 0;
+}
