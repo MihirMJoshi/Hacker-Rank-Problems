@@ -1,0 +1,44 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string SherlockAndValidStrings(vector <int> freq,string s)
+{
+    int c=0; int variable_frequency=0; int sum=0; int n=0;      // initializers for the count
+    string answer;                                              // returning string    
+    
+    for (int i=0; i<26; i++)
+    {
+        (freq[i]==1 ? c++ : c);                              // counting number of alphabets                                                                     that are occured only once                        
+        if (freq[i]!=1 && freq[i]!=0)                        // excluding all the alphabet that                                                                   are repeated only once or not                                                                     repeated (for alphabets repeated o                                                                 once we have used vairable c in                                                                  upper step)
+        freq[i]!=freq[i+1] ? variable_frequency++ : variable_frequency;
+                                                            // variable frequency is used because                                                                we need to check whether the                                                                      alphabets repeated more than once                                                                  are in same count or not
+        
+        (freq[i]!=0) ? (sum += freq[i], n++): (sum,n);      // For non zero occuring alphabets the                                                                sum is calculated and times                                                                        alphabet exists, the count is taken 
+    }
+    
+    if (c>1 || variable_frequency>2)
+    {
+        answer="NO";                                        //for alphabets which that repeated                                                                 once are greater than one & those                                                                 letters whose frequencies are uneven
+        goto jump;
+    }
+    
+    ( (sum%n==0) || ( (sum-1)%n==0) || ( (sum-1)%(n-1)==0 ) ) ? answer="YES" : answer="NO"; 
+                                                            //(sum-1)%(n-1)for strings like abbac
+                                                            //(sum-1)%(n)for strings like abbaddd
+                                                            //sum%no==0 for strings like aabbcc
+     jump: return answer;       
+}
+
+int main()
+{
+    string s;
+    cin>>s;                                             // string s taken as input
+    
+    vector<int> freq(26);
+    for (int i=0; i<s.size(); i++)                      // frequency of each letter recorded
+        freq[s[i]-'a']++;
+    
+    string result = SherlockAndValidStrings(freq,s);    // function call
+    cout<<result<<endl;
+    return 0;
+}
