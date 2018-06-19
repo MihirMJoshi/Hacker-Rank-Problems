@@ -1,0 +1,39 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+void InsertionSort(vector<int> number, int n)
+{
+    int i,j;                                    // to control the length of sort
+    int temp;                                   // sotring values
+    int k;                                      // used to print the values as per author's need
+    
+    for (int j=1; j<n; j++)
+    {
+        temp=number[j];                         // number to be stored in temporary variable
+        i=j-1;
+        while(i>=0 && number[i]>temp)           // for the numbers before are greater and unsorted
+        {
+            number[i+1]=number[i];              // numbers are being swapped
+            i--;
+            for (k=0; k<n; k++)
+                cout<<number[k]<<" ";
+                cout<<endl;
+        }
+        number[i+1]=temp;                       // if the numbers are sorted the temporary                                                            variable changes
+    }
+    for (k=0; k<n; k++)
+        cout<<number[k]<<" ";
+}
+
+int main()
+{
+    int n;
+    cin>>n;
+    
+    vector<int> numbers(1000);
+    for (int i=0; i<n; i++)
+        cin>>numbers[i];
+    
+    InsertionSort(numbers,n);
+    return 0;
+}
