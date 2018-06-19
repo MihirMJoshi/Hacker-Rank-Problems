@@ -1,0 +1,26 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int TutorialProblem(vector<int> array, int v)
+{
+    int key;
+    for (int i=0; i<array.size(); i++)
+            if (array[i]==v)                        // searching of an element
+                key=i;
+    return key;
+}
+
+int main()
+{
+    int v; int n; vector<int> array(1000);           // 'v' is the key element to be found
+    cin>>v;                                         // 'n' number of elements in the array
+    cin>>n;               
+    
+    for (int i=0; i<n; i++)
+        cin>>array[i];                              // inputs taken
+    
+   int result=TutorialProblem(array,v);             // function call
+    cout<<result<<endl;
+    
+    return 0;
+}
