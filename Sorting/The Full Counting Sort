@@ -1,0 +1,29 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    long long int n;                          // 'n' stands for total count
+    cin>>n;
+    
+    string numbers[n];
+    
+    for (long int i=0; i<n/2; i++)
+    {
+        int x; string s;
+        cin>>x>>s;                             // for the first half which requries the   
+        numbers[x]=numbers[x]+"-"+" ";         // output to be printed as dashes
+    }
+    
+    for (long int i=n/2; i<n; i++)
+    {
+        int x; string s;
+        cin>>x>>s;                          // for the next half which requires the output to be 
+        numbers[x]=numbers[x]+s+" ";        // printed as strings
+    }
+    
+    for (int i=0; i<n; i++)
+        cout<<numbers[i];                   // output to be displayed
+    
+    return 0;
+}
