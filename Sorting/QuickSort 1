@@ -1,0 +1,32 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n;                                      // 'n' stands as the length of the array
+    cin>>n;                         
+    
+    vector<int> numbers(n);
+    for (int i=0; i<n; i++)                     // inputs taken
+        cin>>numbers[i];
+    
+    vector<int>result;
+    int i_pivot=numbers[0];                     // according the given condition
+    
+    for (int i=0; i<n; i++)
+        if (i_pivot > numbers[i])               // numbers greater than pivot
+            result.push_back(numbers[i]);
+    
+    for (int i=0; i<n; i++)
+        if (i_pivot == numbers[i])              // numbers equal to pivot
+            result.push_back(numbers[i]);
+    
+    for (int i=0; i<n; i++)
+        if (i_pivot < numbers[i])               // numbers lesser than pivot
+            result.push_back(numbers[i]);
+    
+    for (int i=0; i<n; i++)
+        cout<<result[i]<<" ";                   // final outcome
+    
+    return 0;
+}
