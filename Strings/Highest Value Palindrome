@@ -1,0 +1,52 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+string HighestValuePalindrome(string s,int n,int k)
+{
+    vector<bool> mod(n,false);                  // mod function to identify whether digits have 
+    string temp=s; int j=0;                     // to be replaced or not
+    int lives=k;                                // lives is used a variable to control count
+    for(int i=0; i<n/2; i++)
+    {
+        if (temp[i]!=temp[n-1-i])                // if not a palindrom 
+        {
+            mod[i]=true;                         // digits to be replaced and decrement of loop
+            lives--;
+        }
+        if (temp[i]>temp[n-1-i])
+            temp[n-1-i]=temp[i];                 // replacing lower digits with higher digtis
+        if (temp[i]<temp[n-1-i])
+            temp[i]=temp[n-1-i];                 // replacing lower digtis with higer digits
+        if (lives<0)
+            return "-1";
+    }
+    while (lives>0 && j<n/2)
+    {
+        if (temp[j]!='9')
+        {
+            if (mod[j]==true)                    // true condition
+                lives++;
+            if (lives>1)
+            {
+                temp[j]='9';                     // replacing the digit with 9
+                temp[n-1-j]='9';                 // fullfilling palindrome condition
+                lives=lives-2;
+            }
+        }
+        j++;
+    }
+    if (n%2!=0)                                  // odd length of integer
+        if (lives>0)
+            temp[n/2]='9';                       // center element
+    return temp;
+}
+
+int main()
+{
+    int n; int k; string s;          //'n', 's' and 'k' stand for length of integer, numbers to be 
+    cin>>n>>k>>s;                    // changes and the integer itself
+    
+    string result=HighestValuePalindrome(s,n,k);    // Function Call
+    cout<<result<<endl;
+    return 0;
+}
