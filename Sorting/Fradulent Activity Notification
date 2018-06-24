@@ -1,0 +1,27 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int n; int d;                                       //'n' &'d' stands for numbers of days                                                               data spent and trailing days
+    cin>>n>>d;                                          
+    
+    vector<int> number(n+1);
+    for(int i=0; i<n; i++)                              // inputs taken
+        cin>>number[i];
+    
+    vector<int> allowed(d+1);
+    for (int i=0; i<d; i++)                             // copying numbers in different vector
+        allowed[i]=number[i];
+    
+    sort(allowed.begin(), allowed.begin()+d);
+    
+     int limit=0; int notification=0;               // limit of the expenses specified
+    (d%2==0)?limit=allowed[d/2-1]+allowed[d/2]:limit=allowed[d/2]*2; 
+    
+     for (int i=d; i<n; i++)
+     (number[i]>=limit) ? notification++ : notification;
+     cout<<notification;
+    
+    return 0;
+}
