@@ -1,0 +1,13 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+    int q; cin>>q;  unsigned number;
+    for (int i=0; i<q; i++)
+    {
+        cin>>number;
+        cout<<~number<<endl;
+    }
+    return 0;
+}
