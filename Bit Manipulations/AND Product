@@ -1,0 +1,16 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main()
+{
+  int q; cin>>q;
+  while (q--)
+  {
+    long A, B, mask = -1;
+    cin >> A >> B;
+    for (long xored =A^B; xored; mask <<= 1, xored >>= 1);  // next power of 2
+        cout << (A & mask) << endl;
+  }
+  return 0;
+}
+
