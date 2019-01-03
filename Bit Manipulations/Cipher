@@ -1,0 +1,45 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+/* Logic : In this case we make use of two arrays
+the ciphertext is known to us but however we are unaware about the plain text
+Hence, we make use of properties of XOR operation
+a = b xor c
+then c = a xor b (also b = a xor c)
+
+Hence, in the string that is given to us the first number is not the XOR of any number 
+so first bit is same as plain text
+
+*/
+void cipher(long long int k, string s,long long int n) 
+{
+    
+    long long int a[n];
+    long long int b[n];
+
+    for(long long int i = 0; i < n; i++)
+    {
+        a[i]=s[i]-'0';
+        
+        if(i==0)
+            b[0]=a[0];
+        else if(i<k)
+            b[i]=a[i]^a[i-1];
+        else
+            b[i]=a[i]^a[i-1]^b[i-k];
+    } 
+
+    for (int i=0; i<n; i++)
+        cout<<b[i];
+}
+
+int main() {
+   long long int n, k;
+
+    cin >> n >> k;
+    string s;   cin >> s; 
+    cipher(k, s, n);
+
+    return 0;
+}
+
